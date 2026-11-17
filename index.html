@@ -1,0 +1,2344 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#091124" />
+  <title>Трансформери: Англійська Абетка для Максима</title>
+
+  <!-- Підключення Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Футуристичний шрифт Orbitron та округлий читабельний шрифт Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-space: #091124;
+      --panel-metal: #132242;
+      --energon-cyan: #00f5d4;
+      --autobot-crimson: #ef233c;
+      --bumblebee-gold: #ffd166;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #091124;
+      background-image:
+        radial-gradient(circle at 18% 12%, rgba(0, 245, 212, 0.14) 0%, transparent 42%),
+        radial-gradient(circle at 82% 18%, rgba(239, 35, 60, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(255, 209, 102, 0.1) 0%, transparent 50%),
+        linear-gradient(rgba(0, 245, 212, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 245, 212, 0.04) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+      color: #f8fafc;
+      min-height: 100vh;
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    .font-cyber {
+      font-family: 'Orbitron', 'Nunito', sans-serif;
+    }
+
+    /* Металева панель командного центру Кібертрону */
+    .cyber-panel {
+      background: linear-gradient(155deg, rgba(23, 41, 79, 0.94) 0%, rgba(13, 25, 51, 0.96) 100%);
+      border: 2px solid rgba(0, 245, 212, 0.35);
+      box-shadow:
+        0 14px 32px rgba(2, 6, 23, 0.65),
+        inset 0 1px 1px rgba(255, 255, 255, 0.14),
+        inset 0 0 24px rgba(0, 245, 212, 0.05);
+    }
+
+    /* Об'ємні тактильні кнопки для дитини */
+    .btn-cyber {
+      transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease, filter 0.12s ease;
+      box-shadow: 0 5px 0 rgba(3, 8, 20, 0.75), inset 0 2px 2px rgba(255, 255, 255, 0.35);
+    }
+
+    .btn-cyber:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
+    .btn-cyber:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 rgba(3, 8, 20, 0.75), inset 0 2px 2px rgba(255, 255, 255, 0.25);
+    }
+
+    /* Неонове сяйво енергону */
+    .energon-glow {
+      box-shadow: 0 0 18px rgba(0, 245, 212, 0.45), inset 0 0 12px rgba(0, 245, 212, 0.25);
+    }
+
+    .crimson-glow {
+      box-shadow: 0 0 18px rgba(239, 35, 60, 0.45), inset 0 0 12px rgba(239, 35, 60, 0.2);
+    }
+
+    .gold-glow {
+      box-shadow: 0 0 18px rgba(255, 209, 102, 0.45), inset 0 0 12px rgba(255, 209, 102, 0.2);
+    }
+
+    /* Плавне ширяння робота */
+    @keyframes botHover {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+
+    .bot-float {
+      animation: botHover 3.2s ease-in-out infinite;
+    }
+
+    /* Анімація трансформації (обертання + спалах) */
+    @keyframes transformMorph {
+      0% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+      35% { transform: scale(0.72) rotate(-14deg); filter: brightness(2.2) drop-shadow(0 0 20px #00f5d4); }
+      70% { transform: scale(1.16) rotate(8deg); filter: brightness(1.7) drop-shadow(0 0 24px #ffd166); }
+      100% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+    }
+
+    .animate-transform {
+      animation: transformMorph 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Святковий підстриб */
+    @keyframes popHero {
+      0% { transform: scale(0.75); }
+      50% { transform: scale(1.15); }
+      80% { transform: scale(0.96); }
+      100% { transform: scale(1); }
+    }
+
+    .animate-pop {
+      animation: popHero 0.44s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* М'яке погойдування при помилці */
+    @keyframes gentleShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+    }
+
+    .animate-shake {
+      animation: gentleShake 0.45s ease-in-out;
+    }
+
+    /* Промінь сканера радара */
+    @keyframes radarSweep {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .radar-sweep {
+      background: conic-gradient(from 0deg, rgba(0, 245, 212, 0.35) 0deg, rgba(0, 245, 212, 0) 75deg, transparent 360deg);
+      animation: radarSweep 3.8s linear infinite;
+    }
+
+    /* Пульсація підказки */
+    @keyframes hintPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 209, 102, 0.85); }
+      50% { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(255, 209, 102, 0); }
+    }
+
+    .hint-pulse {
+      animation: hintPulse 1.1s infinite;
+      border-color: #ffd166 !important;
+      background: linear-gradient(180deg, #fde68a 0%, #f59e0b 100%) !important;
+      color: #091124 !important;
+    }
+
+    /* Індикатор активного мовлення */
+    @keyframes speakingGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 245, 212, 0.8), 0 5px 0 rgba(3, 8, 20, 0.75); }
+      50% { box-shadow: 0 0 0 8px rgba(0, 245, 212, 0), 0 5px 0 rgba(3, 8, 20, 0.75); }
+    }
+
+    .speaking-active {
+      animation: speakingGlow 0.75s infinite;
+    }
+
+    /* Частинки іскор трансформації */
+    .spark-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      pointer-events: none;
+      animation: sparkFly 0.65s ease-out forwards;
+    }
+
+    @keyframes sparkFly {
+      0% { transform: translate(0, 0) scale(1.2); opacity: 1; }
+      100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+    }
+
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: #091124; }
+    ::-webkit-scrollbar-thumb { background: #1e3a8a; border-radius: 8px; }
+  </style>
+</head>
+<body class="flex flex-col justify-between min-h-screen">
+
+  <!-- ==================== КОМАНДНИЙ ЦЕНТР: ШАПКА ==================== -->
+  <header class="sticky top-0 z-30 bg-[#091124]/95 backdrop-blur-md border-b-2 border-[#00f5d4]/40 shadow-2xl">
+    <div class="max-w-6xl mx-auto px-3 py-2.5 sm:px-5 sm:py-3 flex flex-wrap items-center justify-between gap-2">
+
+      <!-- Емблема Автоботів та бейдж Максима -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <div onclick="testSoundAndGreet()" class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#ef233c] via-[#d90429] to-[#8d0801] border-2 border-[#ffd166] flex items-center justify-center shadow-lg cursor-pointer shrink-0 crimson-glow" title="Натисни для привітання Автоботів">
+          <!-- Векторний щит Автобота -->
+          <svg viewBox="0 0 64 64" class="w-8 h-8 sm:w-9 sm:h-9">
+            <polygon points="10,12 24,18 32,12 40,18 54,12 50,44 32,56 14,44" fill="#ffd166" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/>
+            <polygon points="18,22 28,26 24,33 18,30" fill="#091124"/>
+            <polygon points="46,22 36,26 40,33 46,30" fill="#091124"/>
+            <polygon points="24,40 32,36 40,40 38,47 32,44 26,47" fill="#091124"/>
+          </svg>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-1.5">
+            <h1 class="font-cyber text-base sm:text-xl md:text-2xl font-black tracking-wide text-white leading-tight">
+              TRANSFORMERS <span class="text-[#00f5d4]">ABC</span>
+            </h1>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm font-extrabold">
+            <span class="text-[#ffd166]">Командир Максим</span>
+            <span class="text-slate-400">•</span>
+            <span id="heroRankBadge" class="px-2 py-0.5 rounded-md bg-[#00f5d4]/15 text-[#00f5d4] border border-[#00f5d4]/40 text-xs">
+              Кадет
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Кнопки звуку, налаштувань та лічильники Енергону і літер -->
+      <div class="flex flex-wrap items-center gap-1.5 sm:gap-2.5 ml-auto sm:ml-0">
+
+        <!-- Кнопка Тест звуку -->
+        <button id="testSoundBtn" onclick="testSoundAndGreet()" class="btn-cyber min-h-[46px] sm:min-h-[50px] bg-gradient-to-b from-[#00f5d4] to-[#00bbf9] text-[#091124] font-black text-xs sm:text-sm px-3 sm:px-4 rounded-2xl border-2 border-white/80 flex items-center gap-1.5" title="Перевірити звук трансформації та голос">
+          <span class="text-base sm:text-lg">🔊</span>
+          <span>Тест звуку</span>
+        </button>
+
+        <!-- Кнопка Налаштування -->
+        <button onclick="openSettingsModal()" class="btn-cyber min-h-[46px] sm:min-h-[50px] bg-gradient-to-b from-[#1e3a8a] to-[#132242] text-white font-extrabold text-xs sm:text-sm px-3 rounded-2xl border-2 border-[#00f5d4]/50 flex items-center gap-1" title="Налаштування голосу та код збереження">
+          <span class="text-base sm:text-lg">⚙️</span>
+          <span class="hidden md:inline">Налаштування</span>
+        </button>
+
+        <!-- Лічильник Кубів Енергону -->
+        <div class="min-h-[46px] sm:min-h-[50px] flex items-center gap-1.5 bg-[#132242] border-2 border-[#00f5d4]/60 rounded-2xl px-3 py-1.5 energon-glow" title="Куби Енергону">
+          <svg viewBox="0 0 32 32" class="w-5 h-5 sm:w-6 sm:h-6 shrink-0">
+            <polygon points="16,3 28,10 28,22 16,29 4,22 4,10" fill="#00f5d4" stroke="#ffffff" stroke-width="2"/>
+            <polygon points="16,3 28,10 16,17 4,10" fill="#a5f3fc" opacity="0.85"/>
+          </svg>
+          <span id="energonCount" class="font-cyber text-base sm:text-lg font-black text-[#00f5d4]">0</span>
+        </div>
+
+        <!-- Лічильник вивчених літер -->
+        <div class="min-h-[46px] sm:min-h-[50px] flex items-center gap-1.5 bg-[#132242] border-2 border-[#ffd166]/60 rounded-2xl px-3 py-1.5 gold-glow" title="Вивчені англійські літери">
+          <span class="text-base sm:text-lg">⭐</span>
+          <span class="font-cyber text-sm sm:text-base font-black text-[#ffd166]"><span id="learnedCount">0</span>/26</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== НАВІГАЦІЯ: 4 РЕЖИМИ ==================== -->
+    <nav class="max-w-6xl mx-auto px-3 pb-2.5 sm:px-5 grid grid-cols-2 md:grid-cols-4 gap-2">
+      <button onclick="switchTab('alphabet')" id="tab-btn-alphabet" class="tab-btn btn-cyber min-h-[54px] rounded-2xl px-2.5 py-2 font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 bg-gradient-to-b from-[#ffd166] to-[#f59e0b] text-[#091124] border-white">
+        <span class="text-xl">🔤</span>
+        <span>Абетка (A–Z)</span>
+      </button>
+
+      <button onclick="switchTab('radar')" id="tab-btn-radar" class="tab-btn btn-cyber min-h-[54px] rounded-2xl px-2.5 py-2 font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 bg-gradient-to-b from-[#1b3160] to-[#132242] text-white border-[#00f5d4]/40">
+        <span class="text-xl">📡</span>
+        <span>Сканер Радару</span>
+      </button>
+
+      <button onclick="switchTab('builder')" id="tab-btn-builder" class="tab-btn btn-cyber min-h-[54px] rounded-2xl px-2.5 py-2 font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 bg-gradient-to-b from-[#1b3160] to-[#132242] text-white border-[#00f5d4]/40">
+        <span class="text-xl">🧩</span>
+        <span>Склади Код</span>
+      </button>
+
+      <button onclick="switchTab('base')" id="tab-btn-base" class="tab-btn btn-cyber min-h-[54px] rounded-2xl px-2.5 py-2 font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 bg-gradient-to-b from-[#1b3160] to-[#132242] text-white border-[#00f5d4]/40">
+        <span class="text-xl">🤖</span>
+        <span>База Автоботів</span>
+        <span id="baseBadge" class="font-cyber bg-[#ef233c] text-white text-xs font-black px-2 py-0.5 rounded-full border border-white/70">1/26</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ==================== ГОЛОВНИЙ РОБОЧИЙ ПРОСТІР ==================== -->
+  <main class="flex-1 w-full max-w-6xl mx-auto px-3 py-4 sm:px-5 sm:py-6">
+
+    <!-- ==================== ВКЛАДКА 1: АБЕТКА (A–Z) ==================== -->
+    <section id="view-alphabet" class="tab-view space-y-4">
+      <div class="cyber-panel rounded-3xl p-4 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+              <span class="text-[#00f5d4]">⚡</span> Кібертронська Англійська Абетка (26 літер)
+            </h2>
+            <p class="text-sm sm:text-base text-slate-300 font-bold">
+              Натисни на будь-яку картку, щоб почути англійську літеру та трансформувати героя!
+            </p>
+          </div>
+
+          <!-- Колірна легенда: Голосні vs Приголосні -->
+          <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm font-extrabold bg-[#091124]/80 px-3.5 py-2 rounded-2xl border border-[#00f5d4]/30 self-start">
+            <span class="flex items-center gap-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#ef233c] inline-block border border-white"></span>
+              Голосні (A, E, I, O, U, Y)
+            </span>
+            <span class="flex items-center gap-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#00f5d4] inline-block border border-white"></span>
+              Приголосні
+            </span>
+          </div>
+        </div>
+
+        <!-- Сітка всіх 26 літер -->
+        <div id="alphabetGrid" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9 gap-2.5 sm:gap-3">
+          <!-- Генерується через JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ВКЛАДКА 2: СКАНЕР РАДАРУ ==================== -->
+    <section id="view-radar" class="tab-view hidden">
+      <div class="cyber-panel rounded-3xl p-4 sm:p-7 max-w-3xl mx-auto text-center">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <span class="bg-[#091124]/85 text-[#00f5d4] font-cyber font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded-full border border-[#00f5d4]/40">
+            📡 RADAR SCAN • ПЕРША ЛІТЕРА
+          </span>
+          <button onclick="speakRadarPrompt()" class="btn-cyber min-h-[50px] bg-gradient-to-b from-[#00f5d4] to-[#00bbf9] text-[#091124] font-black text-sm sm:text-base px-4 rounded-2xl border-2 border-white flex items-center gap-2">
+            <span>🔊</span>
+            <span>Послухати слово</span>
+          </button>
+        </div>
+
+        <!-- Екран радару з трансформером -->
+        <div class="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto my-3 rounded-full bg-[#091124] border-4 border-[#00f5d4]/70 flex items-center justify-center overflow-hidden energon-glow">
+          <div class="absolute inset-0 radar-sweep pointer-events-none"></div>
+          <div class="absolute inset-4 rounded-full border border-[#00f5d4]/25 pointer-events-none"></div>
+          <div class="absolute inset-10 rounded-full border border-[#00f5d4]/25 pointer-events-none"></div>
+          <div id="radarBotArt" class="relative z-10 w-36 h-36 sm:w-44 sm:h-44 bot-float flex items-center justify-center"></div>
+        </div>
+
+        <!-- Українська підказка назви -->
+        <div id="radarUkSubtitle" class="text-sm sm:text-base font-extrabold text-[#ffd166] mb-2">
+          Бамблбі — жовтий розвідник
+        </div>
+
+        <!-- Слово з пропущеною першою літерою -->
+        <div id="radarWordSlots" class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 my-4">
+          <!-- Генерується через JS -->
+        </div>
+
+        <p id="radarFeedback" class="text-base sm:text-lg font-extrabold text-slate-200 min-h-[1.75rem] mb-4">
+          З якої англійської літери починається це слово? Обери капсулу!
+        </p>
+
+        <!-- 4 Енергон-капсули вибору -->
+        <div id="radarOptionsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl mx-auto">
+          <!-- Генерується через JS -->
+        </div>
+
+        <!-- Кнопка наступного сканування -->
+        <div id="radarNextWrap" class="mt-6 hidden">
+          <button onclick="nextRadarTarget()" class="btn-cyber min-h-[58px] bg-gradient-to-b from-emerald-400 to-emerald-600 text-white font-black text-lg sm:text-xl px-8 rounded-3xl border-2 border-emerald-200 inline-flex items-center gap-2">
+            <span>Наступна ціль</span>
+            <span>➡️</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ВКЛАДКА 3: СКЛАДИ КОД (КОНСТРУКТОР СЛІВ) ==================== -->
+    <section id="view-builder" class="tab-view hidden">
+      <div class="cyber-panel rounded-3xl p-4 sm:p-7 max-w-3xl mx-auto text-center">
+
+        <!-- Перемикач складності + кнопки озвучки та підказки -->
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div class="inline-flex bg-[#091124]/85 p-1.5 rounded-2xl border border-[#00f5d4]/40">
+            <button onclick="setBuilderDifficulty('easy')" id="diff-easy-btn" class="min-h-[44px] px-3.5 py-1.5 rounded-xl font-black text-xs sm:text-sm transition bg-[#ffd166] text-[#091124] shadow">
+              ⭐ Легкий (3–4 літери)
+            </button>
+            <button onclick="setBuilderDifficulty('hero')" id="diff-hero-btn" class="min-h-[44px] px-3.5 py-1.5 rounded-xl font-black text-xs sm:text-sm transition text-slate-300 hover:text-white">
+              ⚡ Герой Кібертрону
+            </button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="speakBuilderTarget()" class="btn-cyber min-h-[48px] bg-gradient-to-b from-[#00f5d4] to-[#00bbf9] text-[#091124] font-black text-xs sm:text-sm px-3.5 rounded-2xl border-2 border-white flex items-center gap-1.5">
+              <span>🔊</span>
+              <span>Слово</span>
+            </button>
+            <button onclick="useBuilderHint()" class="btn-cyber min-h-[48px] bg-gradient-to-b from-[#ffd166] to-[#f59e0b] text-[#091124] font-black text-xs sm:text-sm px-3.5 rounded-2xl border-2 border-white flex items-center gap-1.5">
+              <span>💡</span>
+              <span>Підказка</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ілюстрація цілі -->
+        <div class="w-36 h-36 sm:w-44 sm:h-44 mx-auto my-2 rounded-3xl bg-[#091124]/85 border-3 border-[#00f5d4]/50 flex items-center justify-center p-2 energon-glow">
+          <div id="builderTargetArt" class="w-32 h-32 sm:w-36 sm:h-36 bot-float flex items-center justify-center"></div>
+        </div>
+
+        <div id="builderUkHint" class="text-sm sm:text-base font-extrabold text-[#ffd166] mt-1">
+          Оптимус Прайм
+        </div>
+
+        <p id="builderFeedback" class="text-sm sm:text-lg font-extrabold text-slate-200 min-h-[1.75rem] my-2">
+          Натискай на енергонові літери по порядку, щоб розшифрувати код!
+        </p>
+
+        <!-- Комірки для складання англійського слова -->
+        <div id="builderSlots" class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 my-4 min-h-[3.75rem]">
+          <!-- Генерується через JS -->
+        </div>
+
+        <!-- Перемішані кнопки з літерами -->
+        <div class="bg-[#091124]/75 rounded-3xl p-4 border-2 border-[#00f5d4]/25 mt-4">
+          <div id="builderPool" class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 min-h-[4rem]">
+            <!-- Генерується через JS -->
+          </div>
+        </div>
+
+        <!-- Кнопка наступного слова -->
+        <div id="builderNextWrap" class="mt-5 hidden">
+          <button onclick="nextBuilderWord()" class="btn-cyber min-h-[58px] bg-gradient-to-b from-emerald-400 to-emerald-600 text-white font-black text-lg sm:text-xl px-8 rounded-3xl border-2 border-emerald-200 inline-flex items-center gap-2">
+            <span>Наступний код</span>
+            <span>➡️</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ВКЛАДКА 4: БАЗА АВТОБОТІВ (АНГАР 26 ГЕРОЇВ) ==================== -->
+    <section id="view-base" class="tab-view hidden space-y-4">
+      <div class="cyber-panel rounded-3xl p-4 sm:p-6">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-[#00f5d4]/25">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+              <span>🤖</span> Ангар Автоботів Кібертрону
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-300 font-bold">
+              Натисни на будь-якого відкритого робота, щоб він трансформувався прямо в ангарі!
+            </p>
+          </div>
+          <div class="bg-[#091124]/85 border border-[#ffd166]/50 px-4 py-2 rounded-2xl text-right">
+            <div class="text-xs font-extrabold text-slate-300">Активовано героїв</div>
+            <div id="baseSummaryCount" class="font-cyber text-lg font-black text-[#ffd166]">1 / 26</div>
+          </div>
+        </div>
+
+        <!-- Сітка 26 відсіків ангару -->
+        <div id="hangarGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+          <!-- Генерується через JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== ІНТЕРАКТИВНА КАРТКА ЛІТЕРИ ТА ТРАНСФОРМАЦІЇ ==================== -->
+  <div id="letterModal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-5 bg-[#091124]/88 backdrop-blur-md">
+    <div class="cyber-panel relative w-full max-w-xl rounded-3xl p-4 sm:p-6 text-center border-3 border-[#00f5d4]/70 shadow-2xl max-h-[95vh] overflow-y-auto">
+
+      <!-- Кнопка закрити -->
+      <button onclick="closeLetterModal()" class="btn-cyber absolute top-3.5 right-3.5 w-11 h-11 rounded-2xl bg-gradient-to-b from-[#ef233c] to-[#991b1b] text-white font-black text-xl border-2 border-rose-200 flex items-center justify-center" aria-label="Закрити">
+        ✕
+      </button>
+
+      <!-- Верхній бейдж літери + транскрипція + голосна/приголосна -->
+      <div class="inline-flex flex-wrap items-center justify-center gap-2.5 bg-[#091124]/90 border-2 border-[#ffd166]/60 rounded-2xl px-4 py-1.5 mb-2">
+        <span id="modalLetterPair" class="font-cyber text-3xl sm:text-4xl font-black text-[#ffd166]">A a</span>
+        <span id="modalPhoneticBadge" class="text-base sm:text-lg font-black text-[#00f5d4] bg-[#00f5d4]/15 px-2.5 py-0.5 rounded-xl border border-[#00f5d4]/40">
+          [ей]
+        </span>
+        <span id="modalVowelTag" class="text-xs font-extrabold uppercase px-2.5 py-1 rounded-xl bg-[#ef233c]/30 text-rose-200 border border-[#ef233c]/50">
+          Голосна
+        </span>
+      </div>
+
+      <!-- Контейнер ілюстрації з іскрами трансформації та бейджем режиму -->
+      <div id="modalStageBox" class="relative w-44 h-44 sm:w-52 sm:h-52 mx-auto my-1 rounded-3xl bg-gradient-to-b from-[#1e3a8a]/40 to-[#091124]/90 border-3 border-[#00f5d4]/50 flex flex-col items-center justify-center overflow-hidden energon-glow">
+        <span id="modalModePill" class="absolute top-2 left-2.5 text-[10px] sm:text-xs font-cyber font-bold uppercase px-2 py-0.5 rounded-md bg-[#00f5d4]/20 text-[#00f5d4] border border-[#00f5d4]/40">
+          🤖 Робот
+        </span>
+        <div id="modalSvgStage" class="w-36 h-36 sm:w-44 sm:h-44 bot-float flex items-center justify-center p-2"></div>
+      </div>
+
+      <!-- Кнопка ⚡ ТРАНСФОРМАЦІЯ! -->
+      <div class="my-2.5">
+        <button onclick="triggerModalTransformation()" id="transformToggleBtn" class="btn-cyber min-h-[54px] px-6 py-2.5 rounded-2xl bg-gradient-to-r from-[#ef233c] via-[#f97316] to-[#ef233c] text-white font-cyber font-black text-sm sm:text-base tracking-wider border-2 border-[#ffd166] inline-flex items-center gap-2 crimson-glow">
+          <span class="text-xl">⚡</span>
+          <span>ТРАНСФОРМАЦІЯ!</span>
+        </button>
+      </div>
+
+      <!-- Англійське слово з підсвіченою літерою та український переклад -->
+      <div id="modalWordDisplay" class="font-cyber text-2xl sm:text-4xl font-black tracking-wide text-white mt-1">
+        <!-- Заповнюється через JS -->
+      </div>
+      <div id="modalUkTranslation" class="text-sm sm:text-base font-extrabold text-[#ffd166] mt-1 mb-3">
+        Автобот — захисник Землі
+      </div>
+
+      <!-- 3 КНОПКИ ОЗВУЧЕННЯ -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 my-3">
+        <button onclick="speakModalLetterAndWord()" class="btn-cyber min-h-[50px] bg-gradient-to-b from-[#00f5d4] to-[#00bbf9] text-[#091124] font-black text-xs sm:text-sm px-3 rounded-2xl border-2 border-white flex items-center justify-center gap-1.5">
+          <span class="text-base">🔊</span>
+          <span>Буква і слово</span>
+        </button>
+
+        <button onclick="speakModalSpellWord()" class="btn-cyber min-h-[50px] bg-gradient-to-b from-[#ffd166] to-[#f59e0b] text-[#091124] font-black text-xs sm:text-sm px-3 rounded-2xl border-2 border-white flex items-center justify-center gap-1.5">
+          <span class="text-base">🐢</span>
+          <span>По літерах</span>
+        </button>
+
+        <button onclick="speakModalFacts()" class="btn-cyber min-h-[50px] bg-gradient-to-b from-[#3b82f6] to-[#1d4ed8] text-white font-black text-xs sm:text-sm px-3 rounded-2xl border-2 border-sky-200 flex items-center justify-center gap-1.5">
+          <span class="text-base">📖</span>
+          <span>Цікаві факти</span>
+        </button>
+      </div>
+
+      <!-- 2 пізнавальні факти українською мовою -->
+      <div class="bg-[#091124]/80 rounded-2xl p-3.5 border border-[#00f5d4]/30 text-left space-y-1.5">
+        <div class="text-xs font-cyber font-bold uppercase text-[#00f5d4] flex items-center gap-1.5">
+          <span>💠</span> База знань Кібертрону:
+        </div>
+        <ul id="modalFactsList" class="space-y-1.5 text-sm sm:text-base font-bold text-slate-100 leading-snug">
+          <!-- Заповнюється через JS -->
+        </ul>
+      </div>
+
+      <!-- Навігація Попередня / Наступна літера -->
+      <div class="flex items-center justify-between gap-3 mt-4">
+        <button onclick="navigateModalLetter(-1)" class="btn-cyber min-h-[50px] flex-1 bg-gradient-to-b from-[#1e3a8a] to-[#132242] text-white font-extrabold text-sm sm:text-base rounded-2xl border-2 border-[#00f5d4]/40 flex items-center justify-center gap-1.5">
+          <span>⬅️</span>
+          <span>Попередня</span>
+        </button>
+        <button onclick="navigateModalLetter(1)" class="btn-cyber min-h-[50px] flex-1 bg-gradient-to-b from-[#1e3a8a] to-[#132242] text-white font-extrabold text-sm sm:text-base rounded-2xl border-2 border-[#00f5d4]/40 flex items-center justify-center gap-1.5">
+          <span>Наступна</span>
+          <span>➡️</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== МОДАЛЬНЕ ВІКНО НАЛАШТУВАНЬ ТА КОДУ ЗБЕРЕЖЕННЯ ==================== -->
+  <div id="settingsModal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-5 bg-[#091124]/88 backdrop-blur-md">
+    <div class="cyber-panel relative w-full max-w-lg rounded-3xl p-5 sm:p-6 border-3 border-[#00f5d4]/70 shadow-2xl max-h-[92vh] overflow-y-auto">
+      <button onclick="closeSettingsModal()" class="btn-cyber absolute top-3.5 right-3.5 w-10 h-10 rounded-2xl bg-[#ef233c] text-white font-black text-lg border-2 border-rose-200 flex items-center justify-center">
+        ✕
+      </button>
+
+      <h3 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2 mb-3">
+        <span>⚙️</span> Налаштування та Збереження
+      </h3>
+
+      <div id="voiceStatusInfo" class="rounded-2xl p-3 mb-4 border text-xs sm:text-sm font-bold bg-[#091124]/80 border-[#00f5d4]/40 text-slate-200">
+        Перевірка мовних пакетів браузера...
+      </div>
+
+      <div class="space-y-3.5 text-left">
+        <!-- Вибір англійського голосу -->
+        <div>
+          <label for="enVoiceSelect" class="block text-xs sm:text-sm font-extrabold text-[#00f5d4] mb-1">
+            🇬🇧 Англійський голос (літери та слова):
+          </label>
+          <select id="enVoiceSelect" onchange="onVoiceSelectChange()" class="w-full min-h-[46px] rounded-2xl bg-[#091124] text-white border-2 border-[#00f5d4]/50 px-3 text-sm font-bold">
+            <option value="auto">✨ Автоматичний (English US/UK)</option>
+          </select>
+        </div>
+
+        <!-- Вибір українського голосу -->
+        <div>
+          <label for="ukVoiceSelect" class="block text-xs sm:text-sm font-extrabold text-[#ffd166] mb-1">
+            🇺🇦 Український голос (переклад і факти):
+          </label>
+          <select id="ukVoiceSelect" onchange="onVoiceSelectChange()" class="w-full min-h-[46px] rounded-2xl bg-[#091124] text-white border-2 border-[#ffd166]/50 px-3 text-sm font-bold">
+            <option value="auto">✨ Автоматичний (Українська + фонетичний режим)</option>
+          </select>
+        </div>
+
+        <!-- Перемикач швидкості вимови -->
+        <div>
+          <span class="block text-xs sm:text-sm font-extrabold text-slate-300 mb-1.5">
+            Швидкість вимови:
+          </span>
+          <div class="grid grid-cols-2 gap-2.5">
+            <button onclick="setSpeechRate(0.75)" id="rate-slow-btn" class="btn-cyber min-h-[46px] rounded-2xl font-extrabold text-sm border-2 bg-[#ffd166] text-[#091124] border-white">
+              🐢 Повільно (0.75x)
+            </button>
+            <button onclick="setSpeechRate(0.95)" id="rate-norm-btn" class="btn-cyber min-h-[46px] rounded-2xl font-extrabold text-sm border-2 bg-[#132242] text-white border-slate-500">
+              ⚡ Звичайно (0.95x)
+            </button>
+          </div>
+        </div>
+
+        <!-- Перемикач звукових ефектів -->
+        <div class="flex items-center justify-between bg-[#091124]/75 p-3 rounded-2xl border border-[#00f5d4]/30">
+          <div>
+            <div class="font-extrabold text-sm text-white">Звуки трансформації та енергону</div>
+            <div class="text-xs text-slate-400">Механічні ефекти при натисканні кнопок</div>
+          </div>
+          <button onclick="toggleSfx()" id="sfxToggleBtn" class="btn-cyber min-h-[44px] px-4 rounded-xl font-black text-sm bg-emerald-500 text-white border-2 border-emerald-200">
+            Увімкнено
+          </button>
+        </div>
+
+        <!-- Експорт / Імпорт коду прогресу між пристроями -->
+        <div class="bg-[#091124]/85 p-3.5 rounded-2xl border border-[#ffd166]/40 space-y-2.5">
+          <div class="text-xs sm:text-sm font-black text-[#ffd166] flex items-center gap-1.5">
+            <span>💾</span> Код збереження (перенесення на інший пристрій)
+          </div>
+          <div class="flex gap-2">
+            <input id="saveCodeExportInput" type="text" readonly class="flex-1 min-h-[42px] rounded-xl bg-[#132242] text-[#00f5d4] font-mono text-xs px-3 border border-[#00f5d4]/40" />
+            <button onclick="copySaveCode()" class="btn-cyber min-h-[42px] px-3.5 rounded-xl bg-[#00f5d4] text-[#091124] font-black text-xs sm:text-sm border border-white">
+              Копіювати
+            </button>
+          </div>
+          <div class="flex gap-2">
+            <input id="saveCodeImportInput" type="text" placeholder="Встав сюди код з іншого телефона..." class="flex-1 min-h-[42px] rounded-xl bg-[#132242] text-white text-xs px-3 border border-slate-600 focus:outline-none focus:border-[#ffd166]" />
+            <button onclick="importSaveCode()" class="btn-cyber min-h-[42px] px-3.5 rounded-xl bg-[#ffd166] text-[#091124] font-black text-xs sm:text-sm border border-white">
+              Завантажити
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-1 flex gap-2.5">
+          <button onclick="testSoundAndGreet()" class="btn-cyber min-h-[50px] flex-1 bg-gradient-to-b from-[#00f5d4] to-[#00bbf9] text-[#091124] font-black text-sm rounded-2xl border-2 border-white">
+            🔊 Перевірити голос
+          </button>
+          <button onclick="closeSettingsModal()" class="btn-cyber min-h-[50px] bg-[#1e3a8a] text-white font-extrabold text-sm px-5 rounded-2xl border-2 border-[#00f5d4]/40">
+            Готово
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Спливаючий банер нагороди -->
+  <div id="toastBanner" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 transform translate-y-4">
+    <div class="bg-[#091124] text-[#ffd166] font-black text-sm sm:text-base px-5 py-3 rounded-full border-3 border-[#00f5d4] shadow-2xl flex items-center gap-2 whitespace-nowrap energon-glow">
+      <span id="toastIcon" class="text-xl">⚡</span>
+      <span id="toastText">+1 Куб Енергону!</span>
+    </div>
+  </div>
+
+  <!-- Підвал -->
+  <footer class="w-full max-w-6xl mx-auto px-4 py-3 text-center text-xs text-slate-400 flex flex-wrap items-center justify-between gap-2">
+    <span>🤖 Командний центр Автоботів • Англійська абетка для Максима</span>
+    <div id="resetControls">
+      <button onclick="askResetProgress()" class="underline hover:text-white transition">Скинути прогрес</button>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================================
+       1. ГЕНЕРАТОР УНІКАЛЬНИХ ВЕКТОРНИХ SVG (РЕЖИМ РОБОТА ТА РЕЖИМ ТРАНСПОРТУ)
+       ========================================================================= */
+    function makeRobotSvg({ primary, secondary, accent, visor, crest = 'autobot', extra = '' }) {
+      const crestShape = crest === 'decepticon'
+        ? `<polygon points="44,24 54,10 64,22 76,22 86,10 96,24 88,36 52,36" fill="${primary}" stroke="#091124" stroke-width="3"/>`
+        : crest === 'dino'
+        ? `<polygon points="46,24 52,8 62,20 70,6 78,20 88,8 94,24" fill="${accent}" stroke="#091124" stroke-width="3" stroke-linejoin="round"/>`
+        : `<polygon points="48,26 54,10 64,22 70,12 76,22 86,10 92,26" fill="${accent}" stroke="#091124" stroke-width="3" stroke-linejoin="round"/>`;
+
+      return `<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+        ${extra}
+        <!-- Наплічники -->
+        <rect x="18" y="54" width="22" height="28" rx="6" fill="${primary}" stroke="#091124" stroke-width="3.5"/>
+        <rect x="100" y="54" width="22" height="28" rx="6" fill="${primary}" stroke="#091124" stroke-width="3.5"/>
+        <!-- Руки -->
+        <rect x="16" y="82" width="18" height="28" rx="6" fill="${secondary}" stroke="#091124" stroke-width="3"/>
+        <rect x="106" y="82" width="18" height="28" rx="6" fill="${secondary}" stroke="#091124" stroke-width="3"/>
+        <!-- Броньований торс -->
+        <polygon points="36,54 104,54 96,104 44,104" fill="${primary}" stroke="#091124" stroke-width="3.5" stroke-linejoin="round"/>
+        <!-- Вітрове скло / грудна броня -->
+        <polygon points="46,62 67,62 65,80 48,80" fill="${visor}" stroke="#091124" stroke-width="2.5"/>
+        <polygon points="73,62 94,62 92,80 75,80" fill="${visor}" stroke="#091124" stroke-width="2.5"/>
+        <!-- Ядро Енергону на грудях -->
+        <polygon points="70,84 78,91 70,98 62,91" fill="#00f5d4" stroke="#ffffff" stroke-width="1.5"/>
+        <!-- Ноги -->
+        <rect x="44" y="104" width="20" height="26" rx="5" fill="${secondary}" stroke="#091124" stroke-width="3"/>
+        <rect x="76" y="104" width="20" height="26" rx="5" fill="${secondary}" stroke="#091124" stroke-width="3"/>
+        <!-- Шолом та гребінь -->
+        ${crestShape}
+        <rect x="48" y="22" width="44" height="32" rx="10" fill="${secondary}" stroke="#091124" stroke-width="3.5"/>
+        <!-- Візор / очі -->
+        <polygon points="53,34 67,36 67,42 53,41" fill="${visor}"/>
+        <polygon points="87,34 73,36 73,42 87,41" fill="${visor}"/>
+        <!-- Захисна маска -->
+        <polygon points="56,45 84,45 80,53 60,53" fill="${primary}" stroke="#091124" stroke-width="2"/>
+      </svg>`;
+    }
+
+    function makeVehicleSvg({ kind, primary, secondary, accent, visor }) {
+      if (kind === 'car' || kind === 'police') {
+        const siren = kind === 'police'
+          ? `<rect x="62" y="34" width="8" height="7" rx="2" fill="#ef233c"/><rect x="70" y="34" width="8" height="7" rx="2" fill="#3b82f6"/>`
+          : `<line x1="30" y1="62" x2="112" y2="62" stroke="${accent}" stroke-width="4"/>`;
+        return `<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          ${siren}
+          <path d="M22 76 L34 52 L54 40 L90 40 L108 54 L124 62 L124 84 L18 84 Z" fill="${primary}" stroke="#091124" stroke-width="3.5" stroke-linejoin="round"/>
+          <polygon points="56,45 86,45 100,56 46,56" fill="${visor}" stroke="#091124" stroke-width="2.5"/>
+          <rect x="114" y="65" width="9" height="7" rx="2" fill="#fef08a"/>
+          <circle cx="42" cy="86" r="15" fill="#1e293b" stroke="#091124" stroke-width="3.5"/>
+          <circle cx="42" cy="86" r="7" fill="${accent}"/>
+          <circle cx="98" cy="86" r="15" fill="#1e293b" stroke="#091124" stroke-width="3.5"/>
+          <circle cx="98" cy="86" r="7" fill="${accent}"/>
+        </svg>`;
+      }
+
+      if (kind === 'truck' || kind === 'firetruck' || kind === 'ambulance' || kind === 'jeep') {
+        const topGear = kind === 'firetruck'
+          ? `<rect x="20" y="34" width="66" height="8" rx="3" fill="#e2e8f0" stroke="#091124" stroke-width="2.5"/><rect x="92" y="32" width="12" height="8" rx="3" fill="#00f5d4"/>`
+          : kind === 'ambulance'
+          ? `<rect x="44" y="54" width="16" height="6" fill="#ef233c"/><rect x="49" y="49" width="6" height="16" fill="#ef233c"/><rect x="86" y="32" width="12" height="8" rx="3" fill="#ef233c"/>`
+          : kind === 'jeep'
+          ? `<circle cx="24" cy="64" r="11" fill="#1e293b" stroke="#091124" stroke-width="3"/><polygon points="54,48 70,38 86,48" fill="${accent}" stroke="#091124" stroke-width="2.5"/>`
+          : `<rect x="20" y="52" width="62" height="32" rx="4" fill="${secondary}" stroke="#091124" stroke-width="3.5"/>`;
+
+        return `<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          ${topGear}
+          <path d="M22 44 L82 44 L82 84 L22 84 Z" fill="${primary}" stroke="#091124" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M82 40 L108 40 L122 60 L122 84 L82 84 Z" fill="${primary}" stroke="#091124" stroke-width="3.5" stroke-linejoin="round"/>
+          <polygon points="88,46 105,46 115,60 88,60" fill="${visor}" stroke="#091124" stroke-width="2.5"/>
+          <circle cx="42" cy="88" r="15" fill="#1e293b" stroke="#091124" stroke-width="3.5"/>
+          <circle cx="42" cy="88" r="7" fill="${accent}"/>
+          <circle cx="100" cy="88" r="15" fill="#1e293b" stroke="#091124" stroke-width="3.5"/>
+          <circle cx="100" cy="88" r="7" fill="${accent}"/>
+        </svg>`;
+      }
+
+      if (kind === 'jet') {
+        return `<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="70,14 84,54 128,84 84,88 80,114 70,104 60,114 56,88 12,84 56,54" fill="${primary}" stroke="#091124" stroke-width="3.5" stroke-linejoin="round"/>
+          <polygon points="70,34 76,58 64,58" fill="${visor}" stroke="#091124" stroke-width="2"/>
+          <line x1="36" y1="74" x2="54" y2="66" stroke="${accent}" stroke-width="4" stroke-linecap="round"/>
+          <line x1="104" y1="74" x2="86" y2="66" stroke="${accent}" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="62" cy="118" r="5" fill="#00f5d4"/>
+          <circle cx="78" cy="118" r="5" fill="#00f5d4"/>
+        </svg>`;
+      }
+
+      if (kind === 'dino') {
+        return `<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 84 L44 68 L66 56 L84 32 L118 32 L122 48 L98 52 L116 58 L92 64 L82 88 L46 92 Z" fill="${primary}" stroke="#091124" stroke-width="3.5" stroke-linejoin="round"/>
+          <polygon points="98,48 103,53 108,48 113,53 118,48" fill="#ffffff"/>
+          <circle cx="96" cy="39" r="4" fill="${visor}"/>
+          <rect x="56" y="88" width="14" height="24" rx="4" fill="${secondary}" stroke="#091124" stroke-width="3"/>
+          <rect x="76" y="88" width="14" height="24" rx="4" fill="${secondary}" stroke="#091124" stroke-width="3"/>
+        </svg>`;
+      }
+
+      if (kind === 'bird') {
+        return `<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="70,46 12,34 36,68 62,74 70,104 78,74 104,68 128,34" fill="${primary}" stroke="#091124" stroke-width="3.5" stroke-linejoin="round"/>
+          <polygon points="62,34 78,34 70,16" fill="${accent}" stroke="#091124" stroke-width="2.5"/>
+          <circle cx="65" cy="38" r="3" fill="${visor}"/>
+          <circle cx="75" cy="38" r="3" fill="${visor}"/>
+        </svg>`;
+      }
+
+      // Спеціальні об'єкти: Cybertron, Energon, X-Ray, Zoom
+      if (kind === 'planet') {
+        return `<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="70" cy="70" r="42" fill="#1e3a8a" stroke="#00f5d4" stroke-width="4"/>
+          <path d="M36 56 L62 56 L70 44 L98 44 M32 76 L58 76 L68 88 L106 88 M52 34 L52 104 M86 34 L86 104" stroke="#00f5d4" stroke-width="2.5" fill="none" opacity="0.75"/>
+          <ellipse cx="70" cy="70" rx="60" ry="16" transform="rotate(-18 70 70)" fill="none" stroke="#ffd166" stroke-width="4"/>
+        </svg>`;
+      }
+
+      if (kind === 'energon') {
+        return `<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="70,14 114,40 114,100 70,126 26,100 26,40" fill="#00f5d4" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"/>
+          <polygon points="70,14 114,40 70,66 26,40" fill="#cffafe" opacity="0.85"/>
+          <polygon points="70,66 114,40 114,100 70,126" fill="#06b6d4" opacity="0.75"/>
+        </svg>`;
+      }
+
+      if (kind === 'xray') {
+        return `<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="34" width="100" height="72" rx="14" fill="#091124" stroke="#00f5d4" stroke-width="4"/>
+          <circle cx="70" cy="70" r="24" fill="none" stroke="#00f5d4" stroke-width="3" stroke-dasharray="6 4"/>
+          <line x1="30" y1="70" x2="110" y2="70" stroke="#ef233c" stroke-width="3"/>
+          <line x1="70" y1="42" x2="70" y2="98" stroke="#00f5d4" stroke-width="2.5"/>
+          <circle cx="70" cy="70" r="6" fill="#ffd166"/>
+        </svg>`;
+      }
+
+      // Zoom turbo speed
+      return `<svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 54 L54 54 M10 70 L64 70 M18 86 L54 86" stroke="#00f5d4" stroke-width="5" stroke-linecap="round"/>
+        <polygon points="56,42 126,70 56,98 72,70" fill="#ffd166" stroke="#ef233c" stroke-width="4" stroke-linejoin="round"/>
+      </svg>`;
+    }
+
+    /* =========================================================================
+       2. ПОВНА БАЗА ДАНИХ АНГЛІЙСЬКОЇ АБЕТКИ (A–Z) РАЗОМ З ТРАНСФОРМЕРАМИ
+       ========================================================================= */
+    const ALPHABET_DATA = [
+      {
+        letter: 'A', lower: 'a', isVowel: true, ukPhonetic: '[ей]',
+        word: 'Autobot', ukTitle: 'Автобот — захисник Землі',
+        botName: 'Autobot', altModeName: 'Спорткар Автоботів',
+        fact1: 'Автоботи — це добрі роботи з планети Кібертрон, які захищають людей і Землю.',
+        fact2: 'Їхній девіз звучить так: «Автоботи, трансформуємось і вперед!»',
+        botSvg: makeRobotSvg({ primary: '#ef233c', secondary: '#cbd5e1', accent: '#ffd166', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'car', primary: '#ef233c', secondary: '#ffffff', accent: '#ffd166', visor: '#00f5d4' })
+      },
+      {
+        letter: 'B', lower: 'b', isVowel: false, ukPhonetic: '[бі]',
+        word: 'Bumblebee', ukTitle: 'Бамблбі — жовтий розвідник і спорткар',
+        botName: 'Bumblebee', altModeName: 'Жовтий спорткар',
+        fact1: 'Бамблбі — найшвидший розвідник Автоботів і найкращий друг людей.',
+        fact2: 'Він обожнює яскраво-жовтий колір і вміє спілкуватися через радіопісні!',
+        botSvg: makeRobotSvg({ primary: '#ffd166', secondary: '#1e293b', accent: '#f59e0b', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'car', primary: '#ffd166', secondary: '#1e293b', accent: '#091124', visor: '#00f5d4' })
+      },
+      {
+        letter: 'C', lower: 'c', isVowel: false, ukPhonetic: '[сі]',
+        word: 'Cybertron', ukTitle: 'Кібертрон — рідна планета роботів',
+        botName: 'Вартовий Кібертрону', altModeName: 'Планета Кібертрон',
+        fact1: 'Кібертрон — велетенська металева планета, де народилися всі трансформери.',
+        fact2: 'Замість трави та гір там сяють металеві міста та річки енергону!',
+        botSvg: makeRobotSvg({ primary: '#3b82f6', secondary: '#94a3b8', accent: '#00f5d4', visor: '#ffd166' }),
+        altSvg: makeVehicleSvg({ kind: 'planet' })
+      },
+      {
+        letter: 'D', lower: 'd', isVowel: false, ukPhonetic: '[ді]',
+        word: 'Dinobot', ukTitle: 'Динобот — робот-динозавр',
+        botName: 'Dinobot', altModeName: 'Механічний динозавр',
+        fact1: 'Диноботи — це загін могутніх трансформерів, які перетворюються на динозаврів.',
+        fact2: 'Вони мають найміцнішу броню та величезну силу!',
+        botSvg: makeRobotSvg({ primary: '#94a3b8', secondary: '#475569', accent: '#ffd166', visor: '#ef233c', crest: 'dino' }),
+        altSvg: makeVehicleSvg({ kind: 'dino', primary: '#94a3b8', secondary: '#475569', accent: '#ffd166', visor: '#ef233c' })
+      },
+      {
+        letter: 'E', lower: 'e', isVowel: true, ukPhonetic: '[і]',
+        word: 'Energon', ukTitle: 'Енергон — блакитне паливо трансформерів',
+        botName: 'Хранитель Енергону', altModeName: 'Куб Енергону',
+        fact1: 'Енергон — це чарівне блакитне паливо, яке дає силу всім роботам.',
+        fact2: 'Трансформери зберігають його у спеціальних сяючих кубах!',
+        botSvg: makeRobotSvg({ primary: '#06b6d4', secondary: '#e2e8f0', accent: '#00f5d4', visor: '#ffffff' }),
+        altSvg: makeVehicleSvg({ kind: 'energon' })
+      },
+      {
+        letter: 'F', lower: 'f', isVowel: false, ukPhonetic: '[еф]',
+        word: 'Firetruck', ukTitle: 'Пожежна машина — робот-рятувальник',
+        botName: 'Робот-рятувальник', altModeName: 'Пожежна машина',
+        fact1: 'Робот-пожежник миттєво мчить на допомогу з увімкненою сиреною.',
+        fact2: 'Він може гасити вогонь потужними водяними гарматами!',
+        botSvg: makeRobotSvg({ primary: '#dc2626', secondary: '#f8fafc', accent: '#ffd166', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'firetruck', primary: '#dc2626', secondary: '#ffffff', accent: '#ffd166', visor: '#00f5d4' })
+      },
+      {
+        letter: 'G', lower: 'g', isVowel: false, ukPhonetic: '[джі]',
+        word: 'Grimlock', ukTitle: 'Ґрімлок — сильний робот-тираннозавр',
+        botName: 'Grimlock', altModeName: 'Тираннозавр Ґрімлок',
+        fact1: 'Ґрімлок — ватажок Диноботів, який перетворюється на величезного тираннозавра.',
+        fact2: 'Він уміє дихати вогнем і завжди захищає друзів!',
+        botSvg: makeRobotSvg({ primary: '#64748b', secondary: '#f59e0b', accent: '#ef233c', visor: '#00f5d4', crest: 'dino' }),
+        altSvg: makeVehicleSvg({ kind: 'dino', primary: '#64748b', secondary: '#f59e0b', accent: '#ef233c', visor: '#00f5d4' })
+      },
+      {
+        letter: 'H', lower: 'h', isVowel: false, ukPhonetic: '[ейч]',
+        word: 'Hound', ukTitle: 'Хаунд — зелений позашляховик',
+        botName: 'Hound', altModeName: 'Зелений позашляховик',
+        fact1: 'Хаунд обожнює природу Землі та може проїхати крізь будь-які гори й ліси.',
+        fact2: 'Він уміє створювати об’ємні голограми, щоб обдурити ворогів!',
+        botSvg: makeRobotSvg({ primary: '#16a34a', secondary: '#334155', accent: '#ffd166', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'jeep', primary: '#16a34a', secondary: '#1e293b', accent: '#ffd166', visor: '#00f5d4' })
+      },
+      {
+        letter: 'I', lower: 'i', isVowel: true, ukPhonetic: '[ай]',
+        word: 'Ironhide', ukTitle: 'Айронхайд — чорний броньований пікап',
+        botName: 'Ironhide', altModeName: 'Броньований пікап',
+        fact1: 'Айронхайд — найдосвідченіший воїн і вірний друг Оптимуса Прайма.',
+        fact2: 'Його броня така міцна, що витримує будь-які удари!',
+        botSvg: makeRobotSvg({ primary: '#1e293b', secondary: '#64748b', accent: '#ef233c', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'truck', primary: '#1e293b', secondary: '#475569', accent: '#ef233c', visor: '#00f5d4' })
+      },
+      {
+        letter: 'J', lower: 'j', isVowel: false, ukPhonetic: '[джей]',
+        word: 'Jetfire', ukTitle: 'Джетфайр — велетенський реактивний літак',
+        botName: 'Jetfire', altModeName: 'Реактивний літак',
+        fact1: 'Джетфайр — найбільший літаючий Автобот, який піднімається вище за хмари.',
+        fact2: 'Він може перевозити цілу команду роботів на інший край Землі!',
+        botSvg: makeRobotSvg({ primary: '#f8fafc', secondary: '#ef233c', accent: '#3b82f6', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'jet', primary: '#f8fafc', secondary: '#ef233c', accent: '#ef233c', visor: '#00f5d4' })
+      },
+      {
+        letter: 'K', lower: 'k', isVowel: false, ukPhonetic: '[кей]',
+        word: 'Knight', ukTitle: 'Лицар — робот зі щитом і мечем',
+        botName: 'Лицар Кібертрону', altModeName: 'Бойовий зореліт',
+        fact1: 'Стародавні лицарі Кібертрону носили блискучі обладунки та енергонові мечі.',
+        fact2: 'Вони охороняли головні таємниці всесвіту трансформерів!',
+        botSvg: makeRobotSvg({ primary: '#475569', secondary: '#cbd5e1', accent: '#ffd166', visor: '#00f5d4', extra: `<polygon points="112,24 120,24 116,96" fill="#00f5d4" stroke="#ffffff" stroke-width="2"/>` }),
+        altSvg: makeVehicleSvg({ kind: 'jet', primary: '#475569', secondary: '#cbd5e1', accent: '#ffd166', visor: '#00f5d4' })
+      },
+      {
+        letter: 'L', lower: 'l', isVowel: false, ukPhonetic: '[ел]',
+        word: 'Laserbeak', ukTitle: 'Лазербік — робот-сокіл',
+        botName: 'Laserbeak', altModeName: 'Кібер-сокіл',
+        fact1: 'Лазербік — спритний робот-птах, який літає безшумно та бачить усе з висоти.',
+        fact2: 'Він уміє складатися у компактний гаджет для розвідки!',
+        botSvg: makeRobotSvg({ primary: '#991b1b', secondary: '#1e293b', accent: '#ffd166', visor: '#ef233c', crest: 'decepticon' }),
+        altSvg: makeVehicleSvg({ kind: 'bird', primary: '#dc2626', secondary: '#1e293b', accent: '#ffd166', visor: '#00f5d4' })
+      },
+      {
+        letter: 'M', lower: 'm', isVowel: false, ukPhonetic: '[ем]',
+        word: 'Megatron', ukTitle: 'Меґатрон — командир Десептиконів',
+        botName: 'Megatron', altModeName: 'Реактивний винищувач',
+        fact1: 'Меґатрон — головний суперник Оптимуса Прайма і лідер Десептиконів.',
+        fact2: 'Він носить сріблясту броню та перетворюється на потужний винищувач!',
+        botSvg: makeRobotSvg({ primary: '#94a3b8', secondary: '#334155', accent: '#a855f7', visor: '#ef233c', crest: 'decepticon' }),
+        altSvg: makeVehicleSvg({ kind: 'jet', primary: '#94a3b8', secondary: '#334155', accent: '#a855f7', visor: '#ef233c' })
+      },
+      {
+        letter: 'N', lower: 'n', isVowel: false, ukPhonetic: '[ен]',
+        word: 'Nightbird', ukTitle: 'Найтбьорд — швидкий робот-ніндзя',
+        botName: 'Nightbird', altModeName: 'Нічний спорткар',
+        fact1: 'Найтбьорд рухається швидко і тихо, немов справжній космічний ніндзя.',
+        fact2: 'Вона вміє високо стрибати по дахах і майстерно володіє мечами!',
+        botSvg: makeRobotSvg({ primary: '#312e81', secondary: '#1e1b4b', accent: '#00f5d4', visor: '#ffd166', crest: 'decepticon' }),
+        altSvg: makeVehicleSvg({ kind: 'car', primary: '#312e81', secondary: '#1e1b4b', accent: '#00f5d4', visor: '#ffd166' })
+      },
+      {
+        letter: 'O', lower: 'o', isVowel: true, ukPhonetic: '[оу]',
+        word: 'Optimus Prime', ukTitle: 'Оптимус Прайм — лідер Автоботів',
+        botName: 'Optimus Prime', altModeName: 'Червоно-синя вантажівка',
+        fact1: 'Оптимус Прайм — мудрий, сміливий і добрий командир усіх Автоботів.',
+        fact2: 'Він перетворюється на потужну червоно-синю вантажівку!',
+        botSvg: makeRobotSvg({ primary: '#ef233c', secondary: '#1d4ed8', accent: '#cbd5e1', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'truck', primary: '#ef233c', secondary: '#1d4ed8', accent: '#cbd5e1', visor: '#00f5d4' })
+      },
+      {
+        letter: 'P', lower: 'p', isVowel: false, ukPhonetic: '[пі]',
+        word: 'Prowl', ukTitle: 'Праул — поліцейська машина',
+        botName: 'Prowl', altModeName: 'Поліцейське авто',
+        fact1: 'Праул — головний стратег Автоботів, який любить порядок і правила.',
+        fact2: 'У формі авто він їздить із поліцейськими мигалками!',
+        botSvg: makeRobotSvg({ primary: '#f8fafc', secondary: '#0f172a', accent: '#3b82f6', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'police', primary: '#f8fafc', secondary: '#0f172a', accent: '#3b82f6', visor: '#00f5d4' })
+      },
+      {
+        letter: 'Q', lower: 'q', isVowel: false, ukPhonetic: '[к’ю]',
+        word: 'Quintesson', ukTitle: 'Квінтессон — космічний вартовий',
+        botName: 'Quintesson', altModeName: 'Космічний корабель',
+        fact1: 'Квінтессон — загадковий космічний житель, який уміє літати без коліс.',
+        fact2: 'Він знає безліч історій про далекі галактики та зірки!',
+        botSvg: makeRobotSvg({ primary: '#7e22ce', secondary: '#1e293b', accent: '#ffd166', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'planet' })
+      },
+      {
+        letter: 'R', lower: 'r', isVowel: false, ukPhonetic: '[ар]',
+        word: 'Ratchet', ukTitle: 'Ретчет — робот-лікар швидкої допомоги',
+        botName: 'Ratchet', altModeName: 'Машина швидкої допомоги',
+        fact1: 'Ретчет — найкращий лікар і механік у команді Автоботів.',
+        fact2: 'Він може полагодити будь-якого друга за лічені хвилини!',
+        botSvg: makeRobotSvg({ primary: '#f8fafc', secondary: '#ef233c', accent: '#00f5d4', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'ambulance', primary: '#f8fafc', secondary: '#ef233c', accent: '#ef233c', visor: '#00f5d4' })
+      },
+      {
+        letter: 'S', lower: 's', isVowel: false, ukPhonetic: '[ес]',
+        word: 'Starscream', ukTitle: 'Старскрім — швидкісний винищувач',
+        botName: 'Starscream', altModeName: 'Швидкісний винищувач',
+        fact1: 'Старскрім — один із найшвидших повітряних бійців, який робить мертві петлі в небі.',
+        fact2: 'Він мріє сам стати головним командиром усіх Десептиконів!',
+        botSvg: makeRobotSvg({ primary: '#cbd5e1', secondary: '#ef233c', accent: '#3b82f6', visor: '#ffd166', crest: 'decepticon' }),
+        altSvg: makeVehicleSvg({ kind: 'jet', primary: '#cbd5e1', secondary: '#ef233c', accent: '#ef233c', visor: '#ffd166' })
+      },
+      {
+        letter: 'T', lower: 't', isVowel: false, ukPhonetic: '[ті]',
+        word: 'Truck', ukTitle: 'Вантажівка — форма Оптимуса Прайма',
+        botName: 'Тягач Прайма', altModeName: 'Потужна вантажівка',
+        fact1: 'Велика вантажівка легко перевозить важкі причепи та куби енергону.',
+        fact2: 'Саме в таку вантажівку перетворюється Оптимус Прайм!',
+        botSvg: makeRobotSvg({ primary: '#2563eb', secondary: '#ef233c', accent: '#ffd166', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'truck', primary: '#2563eb', secondary: '#ef233c', accent: '#ffd166', visor: '#00f5d4' })
+      },
+      {
+        letter: 'U', lower: 'u', isVowel: true, ukPhonetic: '[ю]',
+        word: 'Ultra Magnus', ukTitle: 'Ультра Маґнус — могутній автовоз',
+        botName: 'Ultra Magnus', altModeName: 'Великий автовоз',
+        fact1: 'Ультра Маґнус — сильний і чесний заступник Оптимуса Прайма.',
+        fact2: 'У режимі машини він може везти на собі цілу команду інших Автоботів!',
+        botSvg: makeRobotSvg({ primary: '#38bdf8', secondary: '#f8fafc', accent: '#ef233c', visor: '#ffd166' }),
+        altSvg: makeVehicleSvg({ kind: 'truck', primary: '#38bdf8', secondary: '#f8fafc', accent: '#ef233c', visor: '#ffd166' })
+      },
+      {
+        letter: 'V', lower: 'v', isVowel: false, ukPhonetic: '[ві]',
+        word: 'Vehicle', ukTitle: 'Транспорт — швидка форма авто',
+        botName: 'Автобот-гонщик', altModeName: 'Гоночний автомобіль',
+        fact1: 'У формі транспорту роботи непомітно їздять дорогами серед звичайних машин.',
+        fact2: 'Кожен трансформер сам обирає, на яке авто або літак перетворитися!',
+        botSvg: makeRobotSvg({ primary: '#f97316', secondary: '#1e293b', accent: '#00f5d4', visor: '#ffd166' }),
+        altSvg: makeVehicleSvg({ kind: 'car', primary: '#f97316', secondary: '#1e293b', accent: '#00f5d4', visor: '#ffd166' })
+      },
+      {
+        letter: 'W', lower: 'w', isVowel: false, ukPhonetic: '[дабл-ю]',
+        word: 'Wheeljack', ukTitle: 'Вілджек — винахідник Автоботів',
+        botName: 'Wheeljack', altModeName: 'Гоночний болід',
+        fact1: 'Вілджек — геніальний учений і винахідник, який створює нові гаджети для Автоботів.',
+        fact2: 'Коли він говорить, його бічні крильця на шоломі яскраво світяться!',
+        botSvg: makeRobotSvg({ primary: '#f8fafc', secondary: '#16a34a', accent: '#ef233c', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'car', primary: '#f8fafc', secondary: '#16a34a', accent: '#ef233c', visor: '#00f5d4' })
+      },
+      {
+        letter: 'X', lower: 'x', isVowel: false, ukPhonetic: '[екс]',
+        word: 'X-Ray', ukTitle: 'Рентген-сканер — суперзір роботів',
+        botName: 'Робот-сканер', altModeName: 'Рентген-сканер',
+        fact1: 'Завдяки X-Ray сканеру трансформери можуть бачити крізь стіни та знаходити сховані предмети.',
+        fact2: 'Цей суперзір допомагає швидко знаходити кристали енергону під землею!',
+        botSvg: makeRobotSvg({ primary: '#0d9488', secondary: '#0f172a', accent: '#00f5d4', visor: '#ef233c' }),
+        altSvg: makeVehicleSvg({ kind: 'xray' })
+      },
+      {
+        letter: 'Y', lower: 'y', isVowel: true, ukPhonetic: '[вай]',
+        word: 'Yellow', ukTitle: 'Жовтий — улюблений колір Бамблбі',
+        botName: 'Сонячний Автобот', altModeName: 'Жовте авто',
+        fact1: 'Yellow англійською означає «жовтий» — це фірмовий колір сміливого Бамблбі.',
+        fact2: 'Яскраво-жовту машину видно здалеку на будь-якій трасі!',
+        botSvg: makeRobotSvg({ primary: '#facc15', secondary: '#0f172a', accent: '#ffffff', visor: '#00f5d4' }),
+        altSvg: makeVehicleSvg({ kind: 'car', primary: '#facc15', secondary: '#0f172a', accent: '#ffffff', visor: '#00f5d4' })
+      },
+      {
+        letter: 'Z', lower: 'z', isVowel: false, ukPhonetic: '[зед]',
+        word: 'Zoom', ukTitle: 'Турбо-швидкість — суперприскорення',
+        botName: 'Турбо-Автобот', altModeName: 'Турбо-прискорення',
+        fact1: 'Zoom — це миттєве турбо-прискорення, коли робот мчить зі швидкістю блискавки!',
+        fact2: 'Літера Z — остання у великій англійській абетці. Ти вивчив усі 26 літер!',
+        botSvg: makeRobotSvg({ primary: '#00bbf9', secondary: '#1e293b', accent: '#ffd166', visor: '#ffffff' }),
+        altSvg: makeVehicleSvg({ kind: 'zoom' })
+      }
+    ];
+
+    /* Словники для конструктора «Склади Код» (два рівні складності) */
+    const BUILDER_WORDS = {
+      easy: [
+        { word: 'BOT', uk: 'Робот-трансформер', svg: ALPHABET_DATA[0].botSvg },
+        { word: 'CAR', uk: 'Автомобіль', svg: ALPHABET_DATA[1].altSvg },
+        { word: 'JET', uk: 'Реактивний літак', svg: ALPHABET_DATA[9].altSvg },
+        { word: 'RED', uk: 'Червоний (колір Оптимуса)', svg: ALPHABET_DATA[14].botSvg },
+        { word: 'SUN', uk: 'Сонце Кібертрону', svg: ALPHABET_DATA[24].botSvg },
+        { word: 'MAX', uk: 'Макс — командир Автоботів!', svg: ALPHABET_DATA[14].altSvg },
+        { word: 'FAST', uk: 'Швидкий розвідник', svg: ALPHABET_DATA[21].altSvg },
+        { word: 'HERO', uk: 'Герой Землі', svg: ALPHABET_DATA[10].botSvg },
+        { word: 'STAR', uk: 'Зірка галактики', svg: ALPHABET_DATA[18].altSvg }
+      ],
+      hero: [
+        { word: 'OPTIMUS', uk: 'Оптимус Прайм', svg: ALPHABET_DATA[14].botSvg },
+        { word: 'BUMBLEBEE', uk: 'Бамблбі', svg: ALPHABET_DATA[1].botSvg },
+        { word: 'AUTOBOT', uk: 'Автобот', svg: ALPHABET_DATA[0].botSvg },
+        { word: 'ENERGON', uk: 'Енергон', svg: ALPHABET_DATA[4].altSvg },
+        { word: 'GRIMLOCK', uk: 'Ґрімлок', svg: ALPHABET_DATA[6].botSvg },
+        { word: 'RATCHET', uk: 'Ретчет', svg: ALPHABET_DATA[17].botSvg }
+      ]
+    };
+
+    /* =========================================================================
+       3. СТАН ДОДАТКА ТА ЗБЕРЕЖЕННЯ ПРОГРЕСУ (localStorage + ЕКСПОРТ КОДУ)
+       ========================================================================= */
+    const STORAGE_KEY = 'transformers_abc_maksym_v1';
+
+    let appState = {
+      learnedLetters: [],
+      unlockedBots: ['A', 'O'],
+      energon: 0,
+      sfxEnabled: true,
+      enVoiceURI: 'auto',
+      ukVoiceURI: 'auto',
+      speechRate: 0.82
+    };
+
+    function loadProgress() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          appState = {
+            learnedLetters: Array.isArray(parsed.learnedLetters) ? parsed.learnedLetters : [],
+            unlockedBots: Array.isArray(parsed.unlockedBots) && parsed.unlockedBots.length > 0
+              ? parsed.unlockedBots
+              : ['A', 'O'],
+            energon: typeof parsed.energon === 'number' ? parsed.energon : 0,
+            sfxEnabled: typeof parsed.sfxEnabled === 'boolean' ? parsed.sfxEnabled : true,
+            enVoiceURI: typeof parsed.enVoiceURI === 'string' ? parsed.enVoiceURI : 'auto',
+            ukVoiceURI: typeof parsed.ukVoiceURI === 'string' ? parsed.ukVoiceURI : 'auto',
+            speechRate: typeof parsed.speechRate === 'number' ? parsed.speechRate : 0.82
+          };
+        }
+      } catch (e) {}
+    }
+
+    function saveProgress() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (e) {}
+      updateHeaderUI();
+    }
+
+    /* =========================================================================
+       4. WEB AUDIO SYNTHESIZER (КЛАСИЧНИЙ ЗВУК ТРАНСФОРМАЦІЇ ТА ЕНЕРГОНУ)
+       ========================================================================= */
+    const SoundFX = {
+      ctx: null,
+
+      unlock() {
+        try {
+          if (!this.ctx) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (AudioCtx) this.ctx = new AudioCtx();
+          }
+          if (this.ctx && this.ctx.state === 'suspended') {
+            this.ctx.resume();
+          }
+        } catch (e) {}
+        return this.ctx;
+      },
+
+      /* Фірмовий 5-кроковий механічний звук трансформації «чі-чу-че-чу-чінк» */
+      playTransform() {
+        if (!appState.sfxEnabled) return;
+        const ctx = this.unlock();
+        if (!ctx) return;
+        try {
+          const steps = [
+            { f1: 210, f2: 520, dur: 0.08 },
+            { f1: 490, f2: 190, dur: 0.08 },
+            { f1: 260, f2: 680, dur: 0.08 },
+            { f1: 640, f2: 240, dur: 0.08 },
+            { f1: 360, f2: 920, dur: 0.13 }
+          ];
+          let t = ctx.currentTime;
+
+          steps.forEach(s => {
+            const osc = ctx.createOscillator();
+            const filter = ctx.createBiquadFilter();
+            const gain = ctx.createGain();
+
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(s.f1, t);
+            osc.frequency.exponentialRampToValueAtTime(s.f2, t + s.dur);
+
+            filter.type = 'bandpass';
+            filter.frequency.setValueAtTime(1100, t);
+            filter.Q.setValueAtTime(2.5, t);
+
+            gain.gain.setValueAtTime(0.001, t);
+            gain.gain.linearRampToValueAtTime(0.22, t + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.001, t + s.dur);
+
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.start(t);
+            osc.stop(t + s.dur + 0.01);
+            t += s.dur * 0.92;
+          });
+        } catch (e) {}
+      },
+
+      /* Кристалічний дзвін Енергону */
+      playEnergonChime(step = 0) {
+        if (!appState.sfxEnabled) return;
+        const ctx = this.unlock();
+        if (!ctx) return;
+        const scale = [587.33, 659.25, 783.99, 880.00, 1046.50, 1174.66, 1318.51];
+        const freq = scale[step % scale.length];
+        try {
+          const now = ctx.currentTime;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.001, now);
+          gain.gain.linearRampToValueAtTime(0.18, now + 0.015);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } catch (e) {}
+      },
+
+      /* Сигнал локації радара */
+      playRadarBeep() {
+        if (!appState.sfxEnabled) return;
+        const ctx = this.unlock();
+        if (!ctx) return;
+        try {
+          const now = ctx.currentTime;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(1180, now);
+          osc.frequency.exponentialRampToValueAtTime(1560, now + 0.14);
+          gain.gain.setValueAtTime(0.001, now);
+          gain.gain.linearRampToValueAtTime(0.15, now + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.2);
+        } catch (e) {}
+      },
+
+      /* Фанфара перемоги Автоботів */
+      playVictoryFanfare() {
+        if (!appState.sfxEnabled) return;
+        const ctx = this.unlock();
+        if (!ctx) return;
+        try {
+          const chord = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+          chord.forEach((freq, idx) => {
+            const start = ctx.currentTime + idx * 0.08;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, start);
+            gain.gain.setValueAtTime(0.001, start);
+            gain.gain.linearRampToValueAtTime(0.2, start + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.001, start + 0.42);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(start);
+            osc.stop(start + 0.44);
+          });
+        } catch (e) {}
+      },
+
+      /* М'який нейтральний звук при помилці */
+      playGentleError() {
+        if (!appState.sfxEnabled) return;
+        const ctx = this.unlock();
+        if (!ctx) return;
+        try {
+          [230, 190].forEach((freq, i) => {
+            const start = ctx.currentTime + i * 0.11;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, start);
+            gain.gain.setValueAtTime(0.001, start);
+            gain.gain.linearRampToValueAtTime(0.13, start + 0.015);
+            gain.gain.exponentialRampToValueAtTime(0.001, start + 0.12);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(start);
+            osc.stop(start + 0.13);
+          });
+        } catch (e) {}
+      }
+    };
+
+    /* =========================================================================
+       5. ДВОМОВНИЙ ДВИГУН МОВЛЕННЯ SpeechEngine (ENGLISH + УКРАЇНСЬКА)
+       ========================================================================= */
+    const SpeechEngine = {
+      voices: [],
+      enVoice: null,
+      ukVoice: null,
+      isNativeUk: false,
+      pollTimer: null,
+      seqToken: 0,
+
+      init() {
+        if (!('speechSynthesis' in window)) {
+          this.updateStatusUI();
+          return;
+        }
+
+        const refresh = () => {
+          const list = window.speechSynthesis.getVoices();
+          if (list && list.length > 0) {
+            this.voices = list;
+            this.resolveVoices();
+            this.populateDropdowns();
+            this.updateStatusUI();
+          }
+        };
+
+        refresh();
+        window.speechSynthesis.onvoiceschanged = refresh;
+
+        let attempts = 0;
+        clearInterval(this.pollTimer);
+        this.pollTimer = setInterval(() => {
+          attempts++;
+          refresh();
+          if ((this.voices.length > 0 && attempts >= 4) || attempts >= 14) {
+            clearInterval(this.pollTimer);
+          }
+        }, 250);
+      },
+
+      resolveVoices() {
+        if (!this.voices || this.voices.length === 0) return;
+
+        // 1. Англійський голос (en-US / en-GB)
+        if (appState.enVoiceURI && appState.enVoiceURI !== 'auto') {
+          const manualEn = this.voices.find(v => v.voiceURI === appState.enVoiceURI);
+          if (manualEn) this.enVoice = manualEn;
+        } else {
+          const enList = this.voices.filter(v => v.lang.toLowerCase().startsWith('en'));
+          this.enVoice = enList.find(v =>
+            v.name.toLowerCase().includes('google us') ||
+            v.name.toLowerCase().includes('samantha') ||
+            v.name.toLowerCase().includes('aria') ||
+            v.name.toLowerCase().includes('david')
+          ) || enList[0] || this.voices[0];
+        }
+
+        // 2. Український голос (uk-UA) або найкращий системний фолбек
+        if (appState.ukVoiceURI && appState.ukVoiceURI !== 'auto') {
+          const manualUk = this.voices.find(v => v.voiceURI === appState.ukVoiceURI);
+          if (manualUk) {
+            this.ukVoice = manualUk;
+            this.isNativeUk = manualUk.lang.toLowerCase().startsWith('uk');
+            return;
+          }
+        }
+
+        const ukList = this.voices.filter(v => v.lang.toLowerCase().startsWith('uk'));
+        if (ukList.length > 0) {
+          this.ukVoice = ukList.find(v =>
+            v.name.toLowerCase().includes('google') ||
+            v.name.toLowerCase().includes('ostap') ||
+            v.name.toLowerCase().includes('lesya')
+          ) || ukList[0];
+          this.isNativeUk = true;
+        } else {
+          this.isNativeUk = false;
+          const fallbackOrder = ['pl', 'cs', 'sk', 'en-us', 'en'];
+          for (const prefix of fallbackOrder) {
+            const found = this.voices.find(v => v.lang.toLowerCase().startsWith(prefix));
+            if (found) {
+              this.ukVoice = found;
+              break;
+            }
+          }
+          if (!this.ukVoice) this.ukVoice = this.voices[0];
+        }
+      },
+
+      transliterateUkPhonetic(text) {
+        const map = {
+          'А': 'A', 'а': 'a', 'Б': 'B', 'б': 'b', 'В': 'V', 'в': 'v',
+          'Г': 'H', 'г': 'h', 'Ґ': 'G', 'ґ': 'g', 'Д': 'D', 'д': 'd',
+          'Е': 'Eh', 'е': 'e', 'Є': 'Ye', 'є': 'ye', 'Ж': 'Zh', 'ж': 'zh',
+          'З': 'Z', 'з': 'z', 'И': 'Y', 'и': 'y', 'І': 'Ee', 'і': 'ee',
+          'Ї': 'Yee', 'ї': 'yee', 'Й': 'Y', 'й': 'y', 'К': 'K', 'к': 'k',
+          'Л': 'L', 'л': 'l', 'М': 'M', 'м': 'm', 'Н': 'N', 'н': 'n',
+          'О': 'O', 'о': 'o', 'П': 'P', 'п': 'p', 'Р': 'R', 'р': 'r',
+          'С': 'S', 'с': 's', 'Т': 'T', 'т': 't', 'У': 'Oo', 'у': 'oo',
+          'Ф': 'F', 'ф': 'f', 'Х': 'Kh', 'х': 'kh', 'Ц': 'Ts', 'ц': 'ts',
+          'Ч': 'Ch', 'ч': 'ch', 'Ш': 'Sh', 'ш': 'sh', 'Щ': 'Shch', 'щ': 'shch',
+          'Ь': "'", 'ь': "'", 'Ю': 'Yu', 'ю': 'yu', 'Я': 'Ya', 'я': 'ya',
+          '’': '', 'ʼ': ''
+        };
+        return Array.from(text).map(ch => (ch in map ? map[ch] : ch)).join('');
+      },
+
+      /* Чисте озвучення назви окремої англійської літери (щоб TTS не казав "а" замість "ей") */
+      formatEnglishLetterForTTS(letter) {
+        const up = letter.toUpperCase();
+        const special = {
+          'A': 'Ay.',
+          'B': 'Bee.',
+          'C': 'See.',
+          'D': 'Dee.',
+          'E': 'Ee.',
+          'F': 'Eff.',
+          'G': 'Jee.',
+          'H': 'Aitch.',
+          'I': 'Eye.',
+          'J': 'Jay.',
+          'K': 'Kay.',
+          'L': 'El.',
+          'M': 'Em.',
+          'N': 'En.',
+          'O': 'Oh.',
+          'P': 'Pee.',
+          'Q': 'Cue.',
+          'R': 'Are.',
+          'S': 'Ess.',
+          'T': 'Tee.',
+          'U': 'You.',
+          'V': 'Vee.',
+          'W': 'Double you.',
+          'X': 'Ex.',
+          'Y': 'Why.',
+          'Z': 'Zee.'
+        };
+        return special[up] || up;
+      },
+
+      stop() {
+        this.seqToken++;
+        window.__activeUtterance = null;
+        const btn = document.getElementById('testSoundBtn');
+        if (btn) btn.classList.remove('speaking-active');
+        if ('speechSynthesis' in window) {
+          try { window.speechSynthesis.cancel(); } catch (e) {}
+        }
+      },
+
+      speakEn(text, rateOverride = null) {
+        this.speakSequence([{ text, lang: 'en', rate: rateOverride }]);
+      },
+
+      speakUk(text, rateOverride = null) {
+        this.speakSequence([{ text, lang: 'uk', rate: rateOverride }]);
+      },
+
+      /* Послідовне двомовне озвучення (наприклад: спочатку English, потім Українська) */
+      speakSequence(items) {
+        SoundFX.unlock();
+        if (!('speechSynthesis' in window)) {
+          SoundFX.playEnergonChime(2);
+          return;
+        }
+
+        if (this.voices.length === 0) {
+          const fresh = window.speechSynthesis.getVoices();
+          if (fresh && fresh.length > 0) {
+            this.voices = fresh;
+            this.resolveVoices();
+          }
+        }
+
+        const synth = window.speechSynthesis;
+        const myToken = ++this.seqToken;
+        const wasBusy = synth.speaking || synth.pending;
+
+        if (wasBusy) {
+          try { synth.cancel(); } catch (e) {}
+        }
+
+        const playStep = (index) => {
+          if (myToken !== this.seqToken || index >= items.length) {
+            const btn = document.getElementById('testSoundBtn');
+            if (btn) btn.classList.remove('speaking-active');
+            return;
+          }
+
+          const item = items[index];
+          try {
+            if (synth.paused) synth.resume();
+
+            let finalStr = item.text;
+            let chosenVoice = null;
+            let chosenLang = 'en-US';
+
+            if (item.lang === 'en') {
+              chosenVoice = this.enVoice;
+              chosenLang = chosenVoice ? chosenVoice.lang : 'en-US';
+            } else {
+              chosenVoice = this.ukVoice;
+              chosenLang = chosenVoice ? chosenVoice.lang : 'uk-UA';
+              if (!this.isNativeUk && chosenVoice) {
+                finalStr = this.transliterateUkPhonetic(item.text);
+              }
+            }
+
+            const utterance = new SpeechSynthesisUtterance(finalStr);
+            if (chosenVoice) utterance.voice = chosenVoice;
+            utterance.lang = chosenLang;
+            utterance.rate = item.rate || appState.speechRate || 0.82;
+            utterance.pitch = item.lang === 'en' ? 1.05 : 1.08;
+            utterance.volume = 1.0;
+
+            window.__activeUtterance = utterance;
+            const testBtn = document.getElementById('testSoundBtn');
+            let started = false;
+
+            const watchdog = setTimeout(() => {
+              if (!started && myToken === this.seqToken) {
+                SoundFX.playEnergonChime(3);
+                playStep(index + 1);
+              }
+            }, 600);
+
+            utterance.onstart = () => {
+              started = true;
+              clearTimeout(watchdog);
+              if (testBtn) testBtn.classList.add('speaking-active');
+            };
+
+            utterance.onend = () => {
+              clearTimeout(watchdog);
+              window.__activeUtterance = null;
+              if (myToken === this.seqToken) {
+                setTimeout(() => playStep(index + 1), 90);
+              }
+            };
+
+            utterance.onerror = () => {
+              clearTimeout(watchdog);
+              window.__activeUtterance = null;
+              if (myToken === this.seqToken) {
+                playStep(index + 1);
+              }
+            };
+
+            synth.resume();
+            synth.speak(utterance);
+          } catch (err) {
+            SoundFX.playEnergonChime(2);
+          }
+        };
+
+        setTimeout(() => playStep(0), wasBusy ? 65 : 0);
+      },
+
+      populateDropdowns() {
+        const enSel = document.getElementById('enVoiceSelect');
+        const ukSel = document.getElementById('ukVoiceSelect');
+        if (!enSel || !ukSel) return;
+
+        enSel.innerHTML = `<option value="auto">✨ Автоматичний (English US/UK)</option>`;
+        ukSel.innerHTML = `<option value="auto">✨ Автоматичний (Українська + фонетичний режим)</option>`;
+
+        this.voices.forEach(v => {
+          const isEn = v.lang.toLowerCase().startsWith('en');
+          const isUk = v.lang.toLowerCase().startsWith('uk');
+
+          const optEn = document.createElement('option');
+          optEn.value = v.voiceURI;
+          optEn.textContent = `${isEn ? '🇬🇧 ' : ''}${v.name} (${v.lang})`;
+          enSel.appendChild(optEn);
+
+          const optUk = document.createElement('option');
+          optUk.value = v.voiceURI;
+          optUk.textContent = `${isUk ? '🇺🇦 ' : ''}${v.name} (${v.lang})`;
+          ukSel.appendChild(optUk);
+        });
+
+        enSel.value = appState.enVoiceURI || 'auto';
+        ukSel.value = appState.ukVoiceURI || 'auto';
+      },
+
+      updateStatusUI() {
+        const info = document.getElementById('voiceStatusInfo');
+        if (!info) return;
+
+        const enName = this.enVoice ? `${this.enVoice.name} (${this.enVoice.lang})` : 'Стандартний EN';
+        const ukStatus = this.isNativeUk && this.ukVoice
+          ? `✅ Українська: ${this.ukVoice.name}`
+          : `🔄 Українська: фонетичний режим (${this.ukVoice ? this.ukVoice.name : 'авто'})`;
+
+        info.innerHTML = `
+          <div>🇬🇧 <strong>Англійська:</strong> ${enName}</div>
+          <div class="mt-1">${ukStatus}</div>
+        `;
+      }
+    };
+
+    /* =========================================================================
+       6. ОНОВЛЕННЯ ШАПКИ, РАНГІВ МАКСИМА ТА НАЛАШТУВАНЬ
+       ========================================================================= */
+    let toastTimer = null;
+    function showToast(text, icon = '⚡') {
+      const banner = document.getElementById('toastBanner');
+      document.getElementById('toastText').textContent = text;
+      document.getElementById('toastIcon').textContent = icon;
+      banner.classList.remove('opacity-0', 'translate-y-4');
+      banner.classList.add('opacity-100', 'translate-y-0');
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        banner.classList.remove('opacity-100', 'translate-y-0');
+        banner.classList.add('opacity-0', 'translate-y-4');
+      }, 2600);
+    }
+
+    function updateHeaderUI() {
+      document.getElementById('energonCount').textContent = appState.energon;
+      document.getElementById('learnedCount').textContent = appState.learnedLetters.length;
+      document.getElementById('baseBadge').textContent = `${appState.unlockedBots.length}/26`;
+
+      const count = appState.learnedLetters.length;
+      let rank = 'Кадет';
+      if (count >= 23) rank = 'Прайм Кібертрону 👑';
+      else if (count >= 15) rank = 'Воїн Автоботів 🛡️';
+      else if (count >= 7) rank = 'Розвідник ⚡';
+      document.getElementById('heroRankBadge').textContent = rank;
+    }
+
+    function addEnergon(amount) {
+      appState.energon += amount;
+      saveProgress();
+    }
+
+    function unlockBot(letter, notify = true) {
+      if (!appState.unlockedBots.includes(letter)) {
+        appState.unlockedBots.push(letter);
+        saveProgress();
+        if (notify) {
+          const item = ALPHABET_DATA.find(d => d.letter === letter);
+          showToast(`Новий герой в Ангарі: ${item ? item.word : letter}!`, '🤖');
+        }
+      }
+    }
+
+    function testSoundAndGreet() {
+      SoundFX.playTransform();
+      showToast('Привіт, Максиме! Автоботи, вперед!', '🤖');
+      SpeechEngine.speakSequence([
+        { text: 'Привіт, Максиме! Автоботи, вперед!', lang: 'uk' },
+        { text: 'Hello, Maksym! Autobots, roll out!', lang: 'en' }
+      ]);
+    }
+
+    /* Налаштування та експорт/імпорт коду збереження */
+    function openSettingsModal() {
+      SoundFX.playEnergonChime(1);
+      SpeechEngine.populateDropdowns();
+      SpeechEngine.updateStatusUI();
+      updateSettingsButtonsUI();
+
+      // Генеруємо компактний код збереження прогресу
+      try {
+        const exportObj = {
+          l: appState.learnedLetters,
+          u: appState.unlockedBots,
+          e: appState.energon
+        };
+        const encoded = btoa(encodeURIComponent(JSON.stringify(exportObj)));
+        document.getElementById('saveCodeExportInput').value = encoded;
+      } catch (e) {}
+
+      const modal = document.getElementById('settingsModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeSettingsModal() {
+      SoundFX.playEnergonChime(0);
+      const modal = document.getElementById('settingsModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function onVoiceSelectChange() {
+      appState.enVoiceURI = document.getElementById('enVoiceSelect').value;
+      appState.ukVoiceURI = document.getElementById('ukVoiceSelect').value;
+      SpeechEngine.resolveVoices();
+      SpeechEngine.updateStatusUI();
+      saveProgress();
+    }
+
+    function setSpeechRate(rate) {
+      SoundFX.playEnergonChime(2);
+      appState.speechRate = rate;
+      saveProgress();
+      updateSettingsButtonsUI();
+      SpeechEngine.speakEn(rate < 0.85 ? 'Slow speed ready!' : 'Normal speed ready!');
+    }
+
+    function toggleSfx() {
+      appState.sfxEnabled = !appState.sfxEnabled;
+      saveProgress();
+      updateSettingsButtonsUI();
+      if (appState.sfxEnabled) SoundFX.playTransform();
+    }
+
+    function updateSettingsButtonsUI() {
+      const slow = document.getElementById('rate-slow-btn');
+      const norm = document.getElementById('rate-norm-btn');
+      if (appState.speechRate <= 0.85) {
+        slow.className = 'btn-cyber min-h-[46px] rounded-2xl font-extrabold text-sm border-2 bg-[#ffd166] text-[#091124] border-white';
+        norm.className = 'btn-cyber min-h-[46px] rounded-2xl font-extrabold text-sm border-2 bg-[#132242] text-white border-slate-500';
+      } else {
+        norm.className = 'btn-cyber min-h-[46px] rounded-2xl font-extrabold text-sm border-2 bg-[#ffd166] text-[#091124] border-white';
+        slow.className = 'btn-cyber min-h-[46px] rounded-2xl font-extrabold text-sm border-2 bg-[#132242] text-white border-slate-500';
+      }
+
+      const sfxBtn = document.getElementById('sfxToggleBtn');
+      if (appState.sfxEnabled) {
+        sfxBtn.textContent = 'Увімкнено';
+        sfxBtn.className = 'btn-cyber min-h-[44px] px-4 rounded-xl font-black text-sm bg-emerald-500 text-white border-2 border-emerald-200';
+      } else {
+        sfxBtn.textContent = 'Вимкнено';
+        sfxBtn.className = 'btn-cyber min-h-[44px] px-4 rounded-xl font-black text-sm bg-slate-700 text-slate-300 border-2 border-slate-500';
+      }
+    }
+
+    function copySaveCode() {
+      const input = document.getElementById('saveCodeExportInput');
+      input.select();
+      input.setSelectionRange(0, 99999);
+      try {
+        document.execCommand('copy');
+        SoundFX.playEnergonChime(4);
+        showToast('Код збереження скопійовано!', '📋');
+      } catch (e) {
+        showToast('Виділи код у полі та скопіюй вручну', '📋');
+      }
+    }
+
+    function importSaveCode() {
+      const raw = document.getElementById('saveCodeImportInput').value.trim();
+      if (!raw) return;
+      try {
+        const decoded = JSON.parse(decodeURIComponent(atob(raw)));
+        if (decoded && Array.isArray(decoded.l) && Array.isArray(decoded.u)) {
+          appState.learnedLetters = decoded.l;
+          appState.unlockedBots = decoded.u.length > 0 ? decoded.u : ['A', 'O'];
+          appState.energon = typeof decoded.e === 'number' ? decoded.e : 0;
+          saveProgress();
+          renderAlphabetGrid();
+          renderHangarGrid();
+          SoundFX.playVictoryFanfare();
+          showToast('Прогрес Максима успішно відновлено!', '🎉');
+          closeSettingsModal();
+        } else {
+          SoundFX.playGentleError();
+          showToast('Невірний формат коду збереження', '⚠️');
+        }
+      } catch (e) {
+        SoundFX.playGentleError();
+        showToast('Не вдалося прочитати код', '⚠️');
+      }
+    }
+
+    /* =========================================================================
+       7. ПЕРЕМИКАННЯ ВКЛАДОК
+       ========================================================================= */
+    let currentTab = 'alphabet';
+
+    function switchTab(tabName) {
+      SoundFX.playEnergonChime(1);
+      currentTab = tabName;
+
+      document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
+      document.getElementById(`view-${tabName}`).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.className = 'tab-btn btn-cyber min-h-[54px] rounded-2xl px-2.5 py-2 font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 bg-gradient-to-b from-[#1b3160] to-[#132242] text-white border-[#00f5d4]/40';
+      });
+
+      const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+      activeBtn.className = 'tab-btn btn-cyber min-h-[54px] rounded-2xl px-2.5 py-2 font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 bg-gradient-to-b from-[#ffd166] to-[#f59e0b] text-[#091124] border-white';
+
+      if (tabName === 'alphabet') renderAlphabetGrid();
+      if (tabName === 'radar' && !currentRadarItem) nextRadarTarget();
+      if (tabName === 'builder' && !currentBuilderItem) nextBuilderWord();
+      if (tabName === 'base') renderHangarGrid();
+    }
+
+    /* =========================================================================
+       8. ВКЛАДКА 1: АБЕТКА (A–Z) ТА МОДАЛЬНА КАРТКА З ТРАНСФОРМАЦІЄЮ
+       ========================================================================= */
+    let activeModalIdx = 0;
+    let modalIsAltMode = false;
+
+    function renderAlphabetGrid() {
+      const grid = document.getElementById('alphabetGrid');
+      grid.innerHTML = '';
+
+      ALPHABET_DATA.forEach((item, index) => {
+        const isLearned = appState.learnedLetters.includes(item.letter);
+        const cardStyle = item.isVowel
+          ? 'from-[#3b152a] to-[#1f1024] border-[#ef233c]/80'
+          : 'from-[#17305c] to-[#0e1d3b] border-[#00f5d4]/60';
+
+        const btn = document.createElement('button');
+        btn.className = `btn-cyber relative rounded-2xl p-2 sm:p-2.5 bg-gradient-to-b ${cardStyle} border-2 flex flex-col items-center justify-between text-center`;
+        btn.onclick = () => openLetterModal(index);
+
+        btn.innerHTML = `
+          <div class="w-full flex items-center justify-between text-[11px] sm:text-xs font-extrabold">
+            <span class="${item.isVowel ? 'text-rose-300' : 'text-[#00f5d4]'}">${item.ukPhonetic}</span>
+            <span>${isLearned ? '⭐' : ''}</span>
+          </div>
+
+          <div class="font-cyber text-2xl sm:text-3xl font-black text-white leading-none my-1">
+            ${item.letter}<span class="text-lg sm:text-xl text-slate-300 ml-0.5">${item.lower}</span>
+          </div>
+
+          <div class="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center my-0.5">
+            ${item.botSvg}
+          </div>
+
+          <div class="text-[11px] sm:text-xs font-black text-[#ffd166] truncate w-full">
+            ${item.word}
+          </div>
+        `;
+        grid.appendChild(btn);
+      });
+    }
+
+    function openLetterModal(index) {
+      activeModalIdx = (index + ALPHABET_DATA.length) % ALPHABET_DATA.length;
+      modalIsAltMode = false;
+      const item = ALPHABET_DATA[activeModalIdx];
+
+      SoundFX.playEnergonChime(activeModalIdx);
+
+      const firstTime = !appState.learnedLetters.includes(item.letter);
+      if (firstTime) {
+        appState.learnedLetters.push(item.letter);
+        addEnergon(1);
+        renderAlphabetGrid();
+      }
+      unlockBot(item.letter, firstTime);
+
+      document.getElementById('modalLetterPair').textContent = `${item.letter} ${item.lower}`;
+      document.getElementById('modalPhoneticBadge').textContent = item.ukPhonetic;
+
+      const vowelTag = document.getElementById('modalVowelTag');
+      if (item.isVowel) {
+        vowelTag.textContent = 'Голосна';
+        vowelTag.className = 'text-xs font-extrabold uppercase px-2.5 py-1 rounded-xl bg-[#ef233c]/35 text-rose-200 border border-[#ef233c]/70';
+      } else {
+        vowelTag.textContent = 'Приголосна';
+        vowelTag.className = 'text-xs font-extrabold uppercase px-2.5 py-1 rounded-xl bg-[#00f5d4]/20 text-[#00f5d4] border border-[#00f5d4]/50';
+      }
+
+      updateModalStageVisuals();
+
+      // Підсвічуємо першу літеру англійського слова
+      const highlighted = Array.from(item.word).map((ch, idx) => {
+        if (idx === 0) {
+          return `<span class="inline-block px-2 py-0.5 mr-0.5 rounded-xl bg-[#ffd166] text-[#091124] shadow-md">${ch}</span>`;
+        }
+        return `<span>${ch}</span>`;
+      }).join('');
+      document.getElementById('modalWordDisplay').innerHTML = highlighted;
+      document.getElementById('modalUkTranslation').textContent = item.ukTitle;
+
+      document.getElementById('modalFactsList').innerHTML = `
+        <li class="flex items-start gap-2"><span class="text-[#00f5d4]">⚡</span><span>${item.fact1}</span></li>
+        <li class="flex items-start gap-2"><span class="text-[#ffd166]">🛡️</span><span>${item.fact2}</span></li>
+      `;
+
+      const modal = document.getElementById('letterModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      speakModalLetterAndWord();
+    }
+
+    function updateModalStageVisuals() {
+      const item = ALPHABET_DATA[activeModalIdx];
+      const stage = document.getElementById('modalSvgStage');
+      const pill = document.getElementById('modalModePill');
+
+      if (modalIsAltMode) {
+        stage.innerHTML = item.altSvg;
+        pill.textContent = `🚗 ${item.altModeName}`;
+        pill.className = 'absolute top-2 left-2.5 text-[10px] sm:text-xs font-extrabold px-2 py-0.5 rounded-md bg-[#ffd166]/25 text-[#ffd166] border border-[#ffd166]/50';
+      } else {
+        stage.innerHTML = item.botSvg;
+        pill.textContent = `🤖 Режим Робота`;
+        pill.className = 'absolute top-2 left-2.5 text-[10px] sm:text-xs font-extrabold px-2 py-0.5 rounded-md bg-[#00f5d4]/20 text-[#00f5d4] border border-[#00f5d4]/40';
+      }
+    }
+
+    function spawnModalSparks() {
+      const box = document.getElementById('modalStageBox');
+      const colors = ['#00f5d4', '#ffd166', '#ef233c', '#ffffff'];
+      for (let i = 0; i < 14; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'spark-dot';
+        spark.style.left = '50%';
+        spark.style.top = '50%';
+        spark.style.backgroundColor = colors[i % colors.length];
+        const angle = (Math.PI * 2 * i) / 14;
+        const dist = 45 + Math.random() * 45;
+        spark.style.setProperty('--dx', `${Math.cos(angle) * dist}px`);
+        spark.style.setProperty('--dy', `${Math.sin(angle) * dist}px`);
+        box.appendChild(spark);
+        setTimeout(() => spark.remove(), 700);
+      }
+    }
+
+    function triggerModalTransformation() {
+      modalIsAltMode = !modalIsAltMode;
+      SoundFX.playTransform();
+      spawnModalSparks();
+
+      const stage = document.getElementById('modalSvgStage');
+      stage.classList.remove('animate-transform');
+      void stage.offsetWidth;
+      stage.classList.add('animate-transform');
+
+      updateModalStageVisuals();
+
+      const item = ALPHABET_DATA[activeModalIdx];
+      if (modalIsAltMode) {
+        SpeechEngine.speakUk(`Трансформація! ${item.altModeName}!`);
+      } else {
+        SpeechEngine.speakEn(`${item.word}! Robot mode!`);
+      }
+    }
+
+    function closeLetterModal() {
+      SoundFX.playEnergonChime(0);
+      SpeechEngine.stop();
+      const modal = document.getElementById('letterModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function speakModalLetterAndWord() {
+      const item = ALPHABET_DATA[activeModalIdx];
+      if (!item) return;
+      const letterSpoken = SpeechEngine.formatEnglishLetterForTTS(item.letter);
+      SpeechEngine.speakSequence([
+        { text: `${letterSpoken} ${item.word}!`, lang: 'en' },
+        { text: item.ukTitle, lang: 'uk' }
+      ]);
+    }
+
+    function speakModalSpellWord() {
+      const item = ALPHABET_DATA[activeModalIdx];
+      if (!item) return;
+      const lettersOnly = item.word.replace(/[^A-Za-z]/g, '').split('');
+      const spelled = lettersOnly.map(ch => SpeechEngine.formatEnglishLetterForTTS(ch)).join(' ');
+      SpeechEngine.speakEn(`${spelled} ... ${item.word}!`, 0.72);
+    }
+
+    function speakModalFacts() {
+      const item = ALPHABET_DATA[activeModalIdx];
+      if (!item) return;
+      SpeechEngine.speakUk(`${item.fact1} ${item.fact2}`);
+    }
+
+    function navigateModalLetter(step) {
+      openLetterModal(activeModalIdx + step);
+    }
+
+    /* =========================================================================
+       9. ВКЛАДКА 2: «СКАНЕР РАДАРУ» (ВГАДАЙ ПЕРШУ ЛІТЕРУ)
+       ========================================================================= */
+    let currentRadarItem = null;
+    let radarSolved = false;
+    let lastRadarLetter = '';
+
+    function nextRadarTarget() {
+      SoundFX.playRadarBeep();
+      radarSolved = false;
+      document.getElementById('radarNextWrap').classList.add('hidden');
+      document.getElementById('radarFeedback').textContent = 'З якої англійської літери починається це слово? Обери капсулу!';
+      document.getElementById('radarFeedback').className = 'text-base sm:text-lg font-extrabold text-slate-200 min-h-[1.75rem] mb-4';
+
+      const candidates = ALPHABET_DATA.filter(d => d.letter !== lastRadarLetter);
+      currentRadarItem = candidates[Math.floor(Math.random() * candidates.length)];
+      lastRadarLetter = currentRadarItem.letter;
+
+      document.getElementById('radarBotArt').innerHTML = currentRadarItem.botSvg;
+      document.getElementById('radarUkSubtitle').textContent = currentRadarItem.ukTitle;
+
+      renderRadarSlots(false);
+
+      const distractors = ALPHABET_DATA
+        .map(d => d.letter)
+        .filter(l => l !== currentRadarItem.letter)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3);
+
+      const options = [currentRadarItem.letter, ...distractors].sort(() => Math.random() - 0.5);
+
+      const grid = document.getElementById('radarOptionsGrid');
+      grid.innerHTML = '';
+
+      options.forEach(letter => {
+        const info = ALPHABET_DATA.find(d => d.letter === letter);
+        const btn = document.createElement('button');
+        btn.className = 'btn-cyber min-h-[72px] rounded-3xl py-3 bg-gradient-to-b from-[#00f5d4] to-[#0284c7] text-[#091124] border-3 border-white flex flex-col items-center justify-center shadow-xl';
+        btn.innerHTML = `
+          <span class="font-cyber text-3xl sm:text-4xl font-black leading-none">${letter}</span>
+          <span class="text-xs font-extrabold opacity-85 mt-1">${info ? info.ukPhonetic : ''}</span>
+        `;
+        btn.onclick = () => checkRadarChoice(letter, btn);
+        grid.appendChild(btn);
+      });
+
+      setTimeout(() => {
+        if (currentTab === 'radar') speakRadarPrompt();
+      }, 200);
+    }
+
+    function speakRadarPrompt() {
+      if (!currentRadarItem) return;
+      SoundFX.playRadarBeep();
+      SpeechEngine.speakEn(`${currentRadarItem.word}!`);
+    }
+
+    function renderRadarSlots(revealed) {
+      const container = document.getElementById('radarWordSlots');
+      const upperWord = currentRadarItem.word.toUpperCase();
+      container.innerHTML = Array.from(upperWord).map((ch, idx) => {
+        if (ch === ' ' || ch === '-') {
+          return `<span class="w-4 sm:w-6 text-slate-400 font-black text-2xl">${ch}</span>`;
+        }
+        if (idx === 0) {
+          if (revealed) {
+            return `<span class="animate-pop font-cyber w-11 h-13 sm:w-14 sm:h-16 rounded-2xl bg-[#ffd166] text-[#091124] border-3 border-white font-black text-2xl sm:text-3xl flex items-center justify-center shadow-lg">${ch}</span>`;
+          }
+          return `<span class="font-cyber w-11 h-13 sm:w-14 sm:h-16 rounded-2xl bg-[#091124] text-[#ffd166] border-3 border-dashed border-[#ffd166] font-black text-2xl sm:text-3xl flex items-center justify-center animate-pulse">?</span>`;
+        }
+        return `<span class="font-cyber w-9 h-11 sm:w-12 sm:h-14 rounded-xl bg-[#132242] text-white border-2 border-[#00f5d4]/40 font-bold text-xl sm:text-2xl flex items-center justify-center">${ch}</span>`;
+      }).join('');
+    }
+
+    function checkRadarChoice(chosen, btnEl) {
+      if (radarSolved) return;
+
+      if (chosen === currentRadarItem.letter) {
+        radarSolved = true;
+        SoundFX.playVictoryFanfare();
+        renderRadarSlots(true);
+
+        btnEl.className = 'animate-pop min-h-[72px] rounded-3xl py-3 bg-gradient-to-b from-emerald-400 to-emerald-600 text-white border-3 border-white flex flex-col items-center justify-center shadow-xl';
+
+        document.getElementById('radarFeedback').textContent = `🎉 Точно, Максиме! ${currentRadarItem.letter} — ${currentRadarItem.word}! (+2 Енергону)`;
+        document.getElementById('radarFeedback').className = 'text-base sm:text-xl font-black text-emerald-300 min-h-[1.75rem] mb-4 animate-pop';
+
+        addEnergon(2);
+        unlockBot(currentRadarItem.letter, true);
+        document.getElementById('radarNextWrap').classList.remove('hidden');
+
+        const letterSpoken = SpeechEngine.formatEnglishLetterForTTS(currentRadarItem.letter);
+        SpeechEngine.speakSequence([
+          { text: `Awesome! ${letterSpoken} is for ${currentRadarItem.word}!`, lang: 'en' },
+          { text: 'Молодець, Максиме!', lang: 'uk' }
+        ]);
+      } else {
+        SoundFX.playGentleError();
+        btnEl.classList.remove('animate-shake');
+        void btnEl.offsetWidth;
+        btnEl.classList.add('animate-shake');
+        btnEl.classList.add('opacity-50');
+
+        const wrongSpoken = SpeechEngine.formatEnglishLetterForTTS(chosen);
+        document.getElementById('radarFeedback').textContent = `Це літера ${chosen}. Послухай ще раз слово ${currentRadarItem.word}!`;
+        SpeechEngine.speakEn(`That is ${wrongSpoken}. Try again for ${currentRadarItem.word}!`);
+      }
+    }
+
+    /* =========================================================================
+       10. ВКЛАДКА 3: «СКЛАДИ КОД» (КОНСТРУКТОР АНГЛІЙСЬКИХ СЛІВ)
+       ========================================================================= */
+    let builderDifficulty = 'easy';
+    let currentBuilderItem = null;
+    let builderSlots = [];
+    let builderPool = [];
+    let builderSolved = false;
+    let lastBuilderWord = '';
+
+    function setBuilderDifficulty(level) {
+      SoundFX.playEnergonChime(2);
+      builderDifficulty = level;
+
+      const easyBtn = document.getElementById('diff-easy-btn');
+      const heroBtn = document.getElementById('diff-hero-btn');
+      if (level === 'easy') {
+        easyBtn.className = 'min-h-[44px] px-3.5 py-1.5 rounded-xl font-black text-xs sm:text-sm transition bg-[#ffd166] text-[#091124] shadow';
+        heroBtn.className = 'min-h-[44px] px-3.5 py-1.5 rounded-xl font-black text-xs sm:text-sm transition text-slate-300 hover:text-white';
+      } else {
+        heroBtn.className = 'min-h-[44px] px-3.5 py-1.5 rounded-xl font-black text-xs sm:text-sm transition bg-[#ffd166] text-[#091124] shadow';
+        easyBtn.className = 'min-h-[44px] px-3.5 py-1.5 rounded-xl font-black text-xs sm:text-sm transition text-slate-300 hover:text-white';
+      }
+      nextBuilderWord();
+    }
+
+    function nextBuilderWord() {
+      SoundFX.playEnergonChime(1);
+      builderSolved = false;
+      document.getElementById('builderNextWrap').classList.add('hidden');
+      document.getElementById('builderFeedback').textContent = 'Натискай на енергонові літери по порядку, щоб розшифрувати код!';
+      document.getElementById('builderFeedback').className = 'text-sm sm:text-lg font-extrabold text-slate-200 min-h-[1.75rem] my-2';
+
+      const list = BUILDER_WORDS[builderDifficulty].filter(w => w.word !== lastBuilderWord);
+      currentBuilderItem = list[Math.floor(Math.random() * list.length)];
+      lastBuilderWord = currentBuilderItem.word;
+
+      document.getElementById('builderTargetArt').innerHTML = currentBuilderItem.svg;
+      document.getElementById('builderUkHint').textContent = currentBuilderItem.uk;
+
+      const chars = Array.from(currentBuilderItem.word);
+      builderSlots = new Array(chars.length).fill(null);
+
+      let tiles = chars.map((ch, idx) => ({ id: idx, char: ch, used: false }));
+      do {
+        tiles.sort(() => Math.random() - 0.5);
+      } while (tiles.map(t => t.char).join('') === currentBuilderItem.word && chars.length > 1);
+
+      builderPool = tiles;
+      renderBuilderBoard();
+
+      setTimeout(() => {
+        if (currentTab === 'builder') speakBuilderTarget();
+      }, 200);
+    }
+
+    function speakBuilderTarget() {
+      if (!currentBuilderItem) return;
+      SoundFX.playEnergonChime(2);
+      SpeechEngine.speakEn(`${currentBuilderItem.word}!`);
+    }
+
+    function renderBuilderBoard(hintTileId = null) {
+      const slotsEl = document.getElementById('builderSlots');
+      const poolEl = document.getElementById('builderPool');
+      const nextEmpty = builderSlots.findIndex(s => s === null);
+
+      slotsEl.innerHTML = builderSlots.map((tile, idx) => {
+        if (tile) {
+          const style = builderSolved
+            ? 'from-emerald-400 to-emerald-600 text-white border-white animate-pop'
+            : 'from-[#ffd166] to-[#f59e0b] text-[#091124] border-white cursor-pointer';
+          return `
+            <button onclick="removeBuilderSlot(${idx})" class="btn-cyber font-cyber w-11 h-13 sm:w-13 sm:h-15 rounded-2xl bg-gradient-to-b ${style} border-2 font-black text-xl sm:text-2xl flex items-center justify-center">
+              ${tile.char}
+            </button>
+          `;
+        }
+        return `
+          <div class="font-cyber w-11 h-13 sm:w-13 sm:h-15 rounded-2xl bg-[#091124]/90 border-2 ${idx === nextEmpty ? 'border-[#ffd166]' : 'border-[#00f5d4]/35'} border-dashed flex items-center justify-center text-slate-500 font-bold text-base">
+            ${idx + 1}
+          </div>
+        `;
+      }).join('');
+
+      poolEl.innerHTML = builderPool.map(tile => {
+        if (tile.used) {
+          return `<div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#091124]/50 border border-[#00f5d4]/20"></div>`;
+        }
+        const hintCls = tile.id === hintTileId ? 'hint-pulse' : '';
+        return `
+          <button onclick="tapBuilderTile(${tile.id})" class="btn-cyber ${hintCls} font-cyber w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-b from-[#00f5d4] to-[#0284c7] text-[#091124] font-black text-xl sm:text-2xl border-2 border-white flex items-center justify-center shadow-lg">
+            ${tile.char}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function tapBuilderTile(tileId) {
+      if (builderSolved) return;
+      const slotIdx = builderSlots.findIndex(s => s === null);
+      if (slotIdx === -1) return;
+
+      const tile = builderPool.find(t => t.id === tileId);
+      if (!tile || tile.used) return;
+
+      SoundFX.playEnergonChime(slotIdx);
+      tile.used = true;
+      builderSlots[slotIdx] = tile;
+      renderBuilderBoard();
+
+      const isComplete = !builderSlots.includes(null);
+      if (!isComplete) {
+        SpeechEngine.speakEn(SpeechEngine.formatEnglishLetterForTTS(tile.char));
+      } else {
+        checkBuilderResult();
+      }
+    }
+
+    function removeBuilderSlot(slotIdx) {
+      if (builderSolved) return;
+      const tile = builderSlots[slotIdx];
+      if (!tile) return;
+
+      SoundFX.playEnergonChime(0);
+      tile.used = false;
+      builderSlots[slotIdx] = null;
+      renderBuilderBoard();
+    }
+
+    function useBuilderHint() {
+      if (builderSolved) return;
+      const nextIdx = builderSlots.findIndex(s => s === null);
+      if (nextIdx === -1) return;
+
+      const neededChar = currentBuilderItem.word[nextIdx];
+      const match = builderPool.find(t => !t.used && t.char === neededChar);
+      if (match) {
+        SoundFX.playRadarBeep();
+        renderBuilderBoard(match.id);
+        SpeechEngine.speakEn(`Next letter is ${SpeechEngine.formatEnglishLetterForTTS(neededChar)}`);
+      }
+    }
+
+    function checkBuilderResult() {
+      const formed = builderSlots.map(t => t.char).join('');
+      if (formed === currentBuilderItem.word) {
+        builderSolved = true;
+        SoundFX.playVictoryFanfare();
+        renderBuilderBoard();
+
+        document.getElementById('builderFeedback').textContent = `⚡ Код «${currentBuilderItem.word}» активовано! (+3 Енергону)`;
+        document.getElementById('builderFeedback').className = 'text-base sm:text-xl font-black text-emerald-300 min-h-[1.75rem] my-2 animate-pop';
+
+        addEnergon(3);
+        unlockBot(currentBuilderItem.word[0], true);
+        document.getElementById('builderNextWrap').classList.remove('hidden');
+
+        SpeechEngine.speakSequence([
+          { text: `Great job! ${currentBuilderItem.word}!`, lang: 'en' },
+          { text: 'Чудова робота, командире!', lang: 'uk' }
+        ]);
+      } else {
+        SoundFX.playGentleError();
+        document.getElementById('builderFeedback').textContent = 'Перевір порядок літер! Натисни на літеру вгорі, щоб прибрати її.';
+        SpeechEngine.speakEn('Check the letters! Try again.');
+      }
+    }
+
+    /* =========================================================================
+       11. ВКЛАДКА 4: «БАЗА АВТОБОТІВ» (ІНТЕРАКТИВНИЙ АНГАР 26 ТРАНСФОРМЕРІВ)
+       ========================================================================= */
+    const hangarAltStates = {};
+
+    function renderHangarGrid() {
+      const grid = document.getElementById('hangarGrid');
+      document.getElementById('baseSummaryCount').textContent = `${appState.unlockedBots.length} / 26`;
+
+      grid.innerHTML = ALPHABET_DATA.map(item => {
+        const unlocked = appState.unlockedBots.includes(item.letter);
+        const isAlt = !!hangarAltStates[item.letter];
+
+        if (unlocked) {
+          return `
+            <button onclick="transformHangarBot('${item.letter}')" class="btn-cyber rounded-3xl p-3 bg-gradient-to-b from-[#1a3466] to-[#0f1d3b] border-2 ${isAlt ? 'border-[#ffd166] gold-glow' : 'border-[#00f5d4]/60 energon-glow'} flex flex-col items-center text-center">
+              <div class="w-full flex items-center justify-between text-xs font-cyber font-black">
+                <span class="text-[#ffd166]">${item.letter}</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-[#00f5d4]/20 text-[#00f5d4]">
+                  ${isAlt ? '🚗 АВТО' : '🤖 БОТ'}
+                </span>
+              </div>
+
+              <div id="hangar-art-${item.letter}" class="w-24 h-24 sm:w-28 sm:h-28 my-1.5 bot-float flex items-center justify-center">
+                ${isAlt ? item.altSvg : item.botSvg}
+              </div>
+
+              <div class="font-cyber text-xs sm:text-sm font-black text-white truncate w-full">
+                ${item.word}
+              </div>
+              <div class="text-[11px] font-bold text-slate-300 truncate w-full mt-0.5">
+                ${isAlt ? item.altModeName : item.ukTitle.split('—')[0]}
+              </div>
+            </button>
+          `;
+        } else {
+          return `
+            <div class="rounded-3xl p-3 bg-[#091124]/75 border-2 border-dashed border-slate-700 flex flex-col items-center justify-between text-center opacity-65">
+              <div class="w-full flex items-center justify-between text-xs font-cyber font-bold text-slate-500">
+                <span>${item.letter}</span>
+                <span>🔒</span>
+              </div>
+
+              <div class="w-24 h-24 sm:w-28 sm:h-28 my-1.5 flex items-center justify-center brightness-0 invert opacity-15">
+                ${item.botSvg}
+              </div>
+
+              <div class="text-xs font-extrabold text-slate-400">
+                Відкрий літеру <span class="font-cyber text-[#ffd166]">${item.letter}</span>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+    }
+
+    function transformHangarBot(letter) {
+      const item = ALPHABET_DATA.find(d => d.letter === letter);
+      if (!item) return;
+
+      hangarAltStates[letter] = !hangarAltStates[letter];
+      SoundFX.playTransform();
+      renderHangarGrid();
+
+      const artEl = document.getElementById(`hangar-art-${letter}`);
+      if (artEl) {
+        artEl.classList.remove('animate-transform');
+        void artEl.offsetWidth;
+        artEl.classList.add('animate-transform');
+      }
+
+      const isAlt = hangarAltStates[letter];
+      showToast(`${item.word} → ${isAlt ? item.altModeName : 'Режим Робота'}!`, '⚡');
+
+      SpeechEngine.speakSequence([
+        { text: `${item.word}!`, lang: 'en' },
+        { text: isAlt ? item.altModeName : item.ukTitle, lang: 'uk' }
+      ]);
+    }
+
+    /* =========================================================================
+       12. РОЗБЛОКУВАННЯ АУДІО, СКИДАННЯ ПРОГРЕСУ ТА СТАРТ
+       ========================================================================= */
+    function setupGlobalAudioUnlock() {
+      const unlockOnce = () => {
+        SoundFX.unlock();
+        if ('speechSynthesis' in window) {
+          try {
+            if (window.speechSynthesis.paused) window.speechSynthesis.resume();
+            window.speechSynthesis.getVoices();
+          } catch (e) {}
+        }
+      };
+      window.addEventListener('pointerdown', unlockOnce, { once: true, capture: true });
+      window.addEventListener('touchstart', unlockOnce, { once: true, capture: true });
+      window.addEventListener('keydown', unlockOnce, { once: true, capture: true });
+    }
+
+    function askResetProgress() {
+      document.getElementById('resetControls').innerHTML = `
+        <span class="text-[#ffd166] font-bold mr-2">Очистити прогрес Максима?</span>
+        <button onclick="confirmResetProgress()" class="bg-[#ef233c] text-white font-bold px-2.5 py-1 rounded-lg mr-1">Так</button>
+        <button onclick="cancelResetProgress()" class="bg-slate-700 text-white font-bold px-2.5 py-1 rounded-lg">Ні</button>
+      `;
+    }
+
+    function cancelResetProgress() {
+      document.getElementById('resetControls').innerHTML = `
+        <button onclick="askResetProgress()" class="underline hover:text-white transition">Скинути прогрес</button>
+      `;
+    }
+
+    function confirmResetProgress() {
+      appState.learnedLetters = [];
+      appState.unlockedBots = ['A', 'O'];
+      appState.energon = 0;
+      saveProgress();
+      renderAlphabetGrid();
+      renderHangarGrid();
+      cancelResetProgress();
+      showToast('База Автоботів перезавантажена!', '🤖');
+    }
+
+    window.onload = function () {
+      loadProgress();
+      setupGlobalAudioUnlock();
+      SpeechEngine.init();
+      updateHeaderUI();
+      renderAlphabetGrid();
+    };
+  </script>
+</body>
+</html>
